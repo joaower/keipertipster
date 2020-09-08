@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "matches",
+  "info": {
+    "name": "matches"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "Easy",
+        "Medium",
+        "Hard"
+      ]
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Sport": {
+      "type": "enumeration",
+      "enum": [
+        "Soccer",
+        "Basketball",
+        "Tennis"
+      ]
+    },
+    "Winner": {
+      "type": "enumeration",
+      "enum": [
+        "House",
+        "Tie",
+        "Outside"
+      ]
+    },
+    "Proof": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
