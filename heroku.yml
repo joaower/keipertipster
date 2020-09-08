@@ -1,0 +1,4 @@
+build:
+    docker:
+        web: frontend-react/Dockerfile
+        server: backend-strapi/Dockerfile
