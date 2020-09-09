@@ -39,6 +39,14 @@ class MatchRequest {
       },
     })
   }
+  getMatchByIdUnauthenticated(id) {
+    return axios.get(`${API_URL}/free-bets/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+  
 
   deleteMatchById(id) {
     return axios.delete(`${API_URL}/free-bets/${id}`, {

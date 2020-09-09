@@ -34,16 +34,29 @@ function PredictionPage(props) {
 
   useEffect(() => {
     debugger
-    MatchRequest.getMatchById(props.id)
-      .then(res => {
-        if (res.status === 200) {
-          debugger
-          setData(res.data)
-        }
-      })
-      .catch(err => {
-        setMessage(err.message)
-      })
+    if (window.localStorage.getItem('jwt') !== null) {
+      MatchRequest.getMatchById(props.id)
+        .then(res => {
+          if (res.status === 200) {
+            debugger
+            setData(res.data)
+          }
+        })
+        .catch(err => {
+          setMessage(err.message)
+        })
+    } else {
+      MatchRequest.getMatchByIdUnauthenticated(props.id)
+        .then(res => {
+          if (res.status === 200) {
+            debugger
+            setData(res.data)
+          }
+        })
+        .catch(err => {
+          setMessage(err.message)
+        })
+    }
   }, [])
   return (
     <>
