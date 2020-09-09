@@ -4,7 +4,7 @@ const API_URL = process.env.API_URL | 'http://localhost:1337'
 
 class MatchRequest {
   getMatches() {
-    debugger
+    console.log(API_URL)
     return axios.get(`${API_URL}/free-bets`, {
       headers: {
         'Content-Type': 'application/json',
