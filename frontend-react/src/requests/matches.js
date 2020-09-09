@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:1337'
+const API_URL = process.env.API_URL | 'http://localhost:1337'
 
 class MatchRequest {
   getMatches() {
