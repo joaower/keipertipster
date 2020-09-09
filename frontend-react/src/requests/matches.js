@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 //const API_URL = process.env.API_URL | 'http://localhost:1337'
-const API_URL = 'http://15.188.3.130:1337'
+const API_URL = 'http://35.180.205.123:1337'
 class MatchRequest {
   getMatches() {
     console.log(API_URL)
