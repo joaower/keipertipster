@@ -106,7 +106,9 @@ function FreeBets() {
         setFilter(res.data)
       })
       .catch(err => {
-        if (err.response.status === 401) navigate('/login')
+        if (err.response !== undefined) {
+          if (err.response.status === 401) navigate('/login')
+        }
       })
   }
 
@@ -230,7 +232,7 @@ function FreeBets() {
             Analysed matches presented below
           </Typography>
 
-          {filter &&
+          {filter!==undefined && filter!==null &&
             filter.map(match => {
               debugger
               return (
