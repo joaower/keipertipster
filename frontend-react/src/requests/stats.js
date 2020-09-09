@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:1337'
+//const API_URL = 'http://localhost:1337'
+const API_URL = 'http://15.188.3.130:1337'
 const GREEN_FILTER = '?green_eq=true'
 
 class StatRequest {
