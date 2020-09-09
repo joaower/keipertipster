@@ -13,6 +13,15 @@ class MatchRequest {
     })
   }
 
+  getMatchesUnauthenticated() {
+    console.log(API_URL)
+    return axios.get(`${API_URL}/free-bets`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
   createMatch(body) {
     return axios.post(`${API_URL}/free-bets`, body, {
       headers: {

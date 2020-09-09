@@ -99,10 +99,22 @@ function FreeBets() {
   }
 
   function loadBettedGames() {
-    MatchRequest.getMatches()
-      .then(res => {
+    if(window.localStorage.getItem('jwt')!==null) {
+
+      MatchRequest.getMatches()
+        .then(res => {
+          setData(res.data)
+          debugger
+          setFilter(res.data)
+        })
+        .catch(err => {
+          if (err.response !== undefined) {
+            if (err.response.status === 401) navigate('/login')
+          }
+        })
+    } else {
+      MatchRequest.getMatchesUnauthenticated().then(res => {
         setData(res.data)
-        debugger
         setFilter(res.data)
       })
       .catch(err => {
@@ -110,6 +122,7 @@ function FreeBets() {
           if (err.response.status === 401) navigate('/login')
         }
       })
+    }
   }
 
   useEffect(() => {
