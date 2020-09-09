@@ -5,7 +5,7 @@ const GREEN_FILTER = '?green_eq=true'
 
 class StatRequest {
     createStat(body) {
-        return axios.post(`${API_URL}/stats`, body, {
+        return axios.post(`${API_URL}/betting-statistics`, body, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,

@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_matches_matches",
+  "info": {
+    "name": "match",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "datetime"
+    },
+    "match": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "odd": {
+      "type": "decimal"
+    },
+    "sport": {
+      "type": "enumeration",
+      "enum": [
+        "Basketball",
+        "Tennis",
+        "Soccer",
+        "Hockey",
+        "Baseball"
+      ]
+    },
+    "competition": {
+      "type": "string"
+    }
+  }
+}

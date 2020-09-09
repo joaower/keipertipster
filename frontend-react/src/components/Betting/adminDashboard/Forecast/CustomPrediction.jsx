@@ -11,14 +11,46 @@ import {
 } from "@material-ui/core";
 import { CssTextField } from "../../../Material-Ui/CssTextField";
 import Utility from "../../../../util/utility";
+import MaterialTable from "../../../Material-Ui/MaterialTableCustom";
+import MaterialTableCustom from "../../../Material-Ui/MaterialTableCustom";
+import Editable from "../../../Material-Ui/Editable";
+import MatchRequest from '../../../../requests/matches'
 const CustomPrediction = ({
   winner,
   sportValue,
   setDifficulty,
   difficulty,
   uploadFile,
-  imageUrl
+  imageUrl,
 }) => {
+  const [type, setType] = React.useState(1);
+  const [risk, setRisk] = React.useState(1);
+  
+  const [data, setData] = React.useState([
+    { sport: '1', competition: 'Baran', sport: "Sporting - Benfica", date: 63, description: "Descrição" },
+  ])
+  const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setType(event.target.value);
+  };
+
+  const handleRiskChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setRisk(event.target.value);
+  };
+
+  function addFreeBet() {
+    const fullBody = {
+      type: Utility.getTypeValue(type.toString()),
+      risk: Utility.getRiskValue(risk.toString()),
+      match: data
+    }
+    debugger
+    MatchRequest.createMatch(fullBody).then(res => {
+      debugger
+    }).catch(err => {
+debugger
+    })
+  } 
+
   return (
     <div style={{ padding: "1rem" }}>
       <form noValidate autoComplete="off">
@@ -27,65 +59,46 @@ const CustomPrediction = ({
             style={{ marginTop: "1rem", marginBottom: "1rem" }}
             item
             xs={12}
+            sm={6}
           >
-            <TextField
-              value={Utility.getSportValue(sportValue)}
-              fullWidth
-              id="outlined-basic"
-              label="Desporto"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid style={{ marginBottom: "1rem" }} item xs={12}>
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="Titlo"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid style={{ marginBottom: "1rem" }} item xs={12}>
-            <p>Vencedor</p>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              variant="outlined"
-              label="Vencedor"
+              value={type}
               fullWidth
-              value={winner}
-              //   onChange={(e) => setWinner(e.target.value)}
+              variant="outlined"
+              onChange={handleTypeChange}
             >
-              <MenuItem value="House">Casa</MenuItem>
-              <MenuItem value="Tie">Tie</MenuItem>
-              <MenuItem value="Outside">Fora</MenuItem>
+              <MenuItem value={1}>Simples</MenuItem>
+              <MenuItem value={2}>Combinada</MenuItem>
             </Select>
           </Grid>
-          <Grid style={{ marginBottom: "1rem" }} item xs={12}>
-            <p>Dificuldade</p>
+          <Grid style={{ marginTop: "1rem" }} item xs={12} sm={6}>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              value={risk}
               fullWidth
               variant="outlined"
-              value={difficulty}
-              onChange={(e) => setDifficulty(e.target.value)}
+              onChange={handleRiskChange}
             >
-              <MenuItem value="Easy">Easy</MenuItem>
-              <MenuItem value="Medium">Medium</MenuItem>
-              <MenuItem value="Hard">Hard</MenuItem>
+              <MenuItem value={1}>Valor</MenuItem>
+              <MenuItem value={2}>Garantida</MenuItem>
             </Select>
           </Grid>
           <Grid style={{ marginBottom: "1rem" }} item xs={12}>
+          {/* data={data} setData={setData} */}
+          <Editable  data={data} setData={setData} addFreeBet={addFreeBet} />
+          </Grid>
+          {/* <Grid style={{ marginBottom: "1rem" }} item xs={12}>
             <img src={imageUrl} />
             <Button fullWidth variant="contained" component="label">
-              <input
-                type="file"
-                onChange={uploadFile}
-              />
+              <input type="file" onChange={uploadFile} />
             </Button>
-          </Grid>
+          </Grid> */}
           <Grid style={{ marginBottom: "1rem" }} item xs={12}>
-            <CssTextField
+            <Button onClick={addFreeBet}>Add</Button>
+            {/* <CssTextField
               placeholder=""
               multiline
               variant="outlined"
@@ -94,7 +107,7 @@ const CustomPrediction = ({
               rows={2}
               rowsMax={10}
               //   onChange={(e) => setDescription(e.target.value)}
-            />
+            /> */}
           </Grid>
         </Grid>
       </form>

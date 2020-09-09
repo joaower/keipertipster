@@ -27,7 +27,7 @@ const Landing = () => {
           textAlign: 'center',
         }}
       >
-        <h1>Mete-se aqui um textozito </h1>
+        <h2>Mete-se aqui um textozito </h2>
         <p className={classes.text}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Aperiam adipisci assumenda quasi, laborum odio earum

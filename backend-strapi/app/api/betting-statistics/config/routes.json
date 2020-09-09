@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/betting-statistics",
+      "handler": "betting-statistics.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/betting-statistics/count",
+      "handler": "betting-statistics.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/betting-statistics/:id",
+      "handler": "betting-statistics.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/betting-statistics",
+      "handler": "betting-statistics.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/betting-statistics/:id",
+      "handler": "betting-statistics.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/betting-statistics/:id",
+      "handler": "betting-statistics.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import PredictionStatistics from "./PredictionStatistics";
 import PredictionHouses from "./PredictionHouses";
 import PredictionBody from "./PredictionBody";
 import MatchRequest from "../../../requests/matches";
+import { useStylesColor } from "../../style";
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +24,8 @@ const useStyles = makeStyles({
 
 function PredictionPage(props) {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
+  const color=useStylesColor()
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -31,6 +33,7 @@ function PredictionPage(props) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    debugger
     MatchRequest.getMatchById(props.id)
       .then((res) => {
         if (res.status === 200) {
@@ -51,11 +54,12 @@ function PredictionPage(props) {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
+          variant="fullWidth"
           centered
         >
-          <Tab label="Estatisticas do confronto" />
-          <Tab label="Previsão" />
-          <Tab label="Casas de apostas" />
+          <Tab disabled className={color.tBlack} label="Estatisticas do confronto" />
+          <Tab className={color.tGreen} label="Previsão" />
+          <Tab disabled className={color.tBlack} label="Casas de apostas" />
         </Tabs>
       </Paper>
       {message}

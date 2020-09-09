@@ -7,7 +7,7 @@ import {
     Title,
     ArgumentAxis,
     ValueAxis,
-} from '@devexpress/dx-react-chart-material-ui'
+} from '@devexpress/dx-react-chart'
 import { Animation } from '@devexpress/dx-react-chart'
 import { navigate } from '@reach/router'
 import { green } from '@material-ui/core/colors'

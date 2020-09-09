@@ -12,7 +12,27 @@ class Utility {
             case '3':
                 return 'Soccer'
             default:
-                return 'defaul'
+                return 'default'
+        }
+    }
+    getTypeValue(typeValue) {
+        switch (typeValue) {
+            case '1':
+                return 'Simples'
+            case '2':
+                return 'Combinada'
+            default:
+                return 'default'
+        }
+    }
+    getRiskValue(riskValue) {
+        switch (riskValue) {
+            case '1':
+                return 'Valor'
+            case '2':
+                return 'Garantida'
+            default:
+                return 'default'
         }
     }
 }

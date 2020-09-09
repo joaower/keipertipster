@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/free-bets",
+      "handler": "free-bets.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/free-bets/count",
+      "handler": "free-bets.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/free-bets/:id",
+      "handler": "free-bets.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/free-bets",
+      "handler": "free-bets.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/free-bets/:id",
+      "handler": "free-bets.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/free-bets/:id",
+      "handler": "free-bets.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -66,7 +66,7 @@ function AdminDashboardCustomPrediction(props) {
 
   return (
     <>
-      <CustomPrediction sportValue={props.location.state.sportValue} />
+      <CustomPrediction />
     </>
   );
 }

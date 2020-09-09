@@ -4,14 +4,16 @@ import PredictedCard from '../../../../card/PredictedCard'
 
 const AdminPredictedMatches = ({classes, alreadyData, handleClose, handleDelete, open, removeAlreadyDataFromState}) => {
     return (
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} >
             <Paper className={classes.paper}>
                 <Typography variant="h5" className={classes.title}>
                     Predictions
                 </Typography>
             </Paper>
+
             {alreadyData &&
                 alreadyData.map(match => {
+                    debugger
                     return (
                         <PredictedCard
                             data={match}

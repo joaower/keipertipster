@@ -64,6 +64,7 @@ export default function NavBar() {
               <div>
                 <Typography variant="h5" className={classes.title}>
                   <Link
+                  to="/"
                     style={{
                       textDecoration: "none",
                       cursor: "pointer",
@@ -71,7 +72,7 @@ export default function NavBar() {
                     onClick={() => navigate("/")}
                     className={color.tOrange}
                   >
-                    Vidal - Betting Hub
+                    KeiperTipster - betting Hub
                   </Link>
                 </Typography>
               </div>
@@ -80,23 +81,12 @@ export default function NavBar() {
               item
               container
               direction="row"
-              alignItems="center"
+              alignItems="flex-end"
               justify="flex-end"
               xs={12}
               sm={6}
             >
-              <Grid item xs>
-                <Link
-                  style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => navigate("/")}
-                  className={color.tOrange}
-                >
-                  Home
-                </Link>
-              </Grid>
+              
               <Grid item xs>
                 <Link
                   style={{
@@ -130,10 +120,22 @@ export default function NavBar() {
                   onClick={() => navigate("/contacto")}
                   className={color.tOrange}
                 >
-                  Contacto
+                  Contacto fodasse
                 </Link>
               </Grid>
 
+              <Grid item xs>
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => navigate("/login")}
+                  className={color.tOrange}
+                >
+                  Login
+                </Link>
+              </Grid>
               {/* <Grid item xs>
                                 <AuthConsumer>
                                     {({ auth, logout }) =>

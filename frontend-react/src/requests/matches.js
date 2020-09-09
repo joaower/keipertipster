@@ -4,7 +4,8 @@ const API_URL = 'http://localhost:1337'
 
 class MatchRequest {
     getMatches() {
-        return axios.get(`${API_URL}/matches`, {
+        debugger
+        return axios.get(`${API_URL}/free-bets`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
@@ -13,7 +14,7 @@ class MatchRequest {
     }
 
     createMatch(body) {
-        return axios.post(`${API_URL}/matches`, body, {
+        return axios.post(`${API_URL}/free-bets`, body, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
@@ -22,7 +23,7 @@ class MatchRequest {
     }
 
     getMatchById(id) {
-        return axios.get(`${API_URL}/matches/${id}`, {
+        return axios.get(`${API_URL}/free-bets/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
@@ -31,7 +32,7 @@ class MatchRequest {
     }
 
     deleteMatchById(id) {
-        return axios.delete(`${API_URL}/matches/${id}`, {
+        return axios.delete(`${API_URL}/free-bets/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,

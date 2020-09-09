@@ -45,7 +45,7 @@ const Contact = () => {
             <section className={classes.contSection}>
                 <Paper className={classes.formContainer} elevation={3}>
                     <Typography variant="h4">
-                        Utilize este formulario para me contactar
+                        Utilize este formulario para me contatar
                     </Typography>
 
                     <form>

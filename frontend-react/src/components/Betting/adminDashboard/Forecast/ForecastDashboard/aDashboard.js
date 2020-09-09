@@ -61,9 +61,9 @@ function DashBoard() {
             })
     }
 
-    function loadFootBallGames() {
+    /* function loadFootBallGames() {
         soccer()
-    }
+    } */
     const handleSportChange = event => {
         setSportValue(event.target.value)
         switch (event.target.value) {
@@ -74,21 +74,21 @@ function DashBoard() {
                 loadBasketBallGames()
                 break
             case '3':
-                loadFootBallGames()
+                // loadFootBallGames()
                 break
             default:
                 console.log('Choose a sport')
         }
     }
-    function soccer() {
+    /* function soccer() {
         SoccerRequest.getToday().then(res => {
             if (res.status === 200) setData(res.data.matches)
         }).catch(err => {
             navigate('/login')
         })
-    }
+    } */
     useEffect(() => {
-        soccer()
+        // soccer()
 
         MatchRequest.getMatches().then(res => {
             setAlreadyData(res.data)

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "betting_statistics",
+  "info": {
+    "name": "Betting-Statistics"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "green": {
+      "type": "boolean"
+    },
+    "log": {
+      "type": "component",
+      "repeatable": false,
+      "component": "matches.log"
+    },
+    "odd": {
+      "type": "decimal"
+    }
+  }
+}

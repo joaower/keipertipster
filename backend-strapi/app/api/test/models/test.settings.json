@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tests",
+  "info": {
+    "name": "test"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "enum": {
+      "type": "enumeration",
+      "enum": [
+        "Ola",
+        "Adeus"
+      ]
+    }
+  }
+}

@@ -7,6 +7,8 @@ import {
     makeStyles,
     CardContent,
     Snackbar,
+    Divider,
+    Grid,
 } from '@material-ui/core'
 import NotInterestedIcon from '@material-ui/icons/NotInterested'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -18,10 +20,17 @@ import MatchRequest from '../../requests/matches'
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+    
+    },
+    rootTest: {
+        display: 'flex',
+        width: '100%',
+        backgroundColor: 'red'
     },
     details: {
         display: 'flex',
         flexDirection: 'column',
+        width: '100%'
     },
     content: {
         flex: '1 0 auto',
@@ -48,11 +57,11 @@ const PredictedCard = ({
     open,
     handleDelete,
     removeAlreadyDataFromState,
-    data: { id, Title, Winner, Odd, Sport },
+    data: { id, type, match, createdAt },
 }) => {
     const classes = useStyles()
     const theme = useTheme()
-
+    const combinedOdd = match.reduce((a,b) => a * b.odd, 1)
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />
     }
@@ -62,16 +71,13 @@ const PredictedCard = ({
         handleDelete(id)
     }
 
-    function addStat(e, green) {
+    function addStatistic(e, green) {
         e.preventDefault()
         let body = {
-            // valueWon: Odd*BettingValue,
-            title: Title,
-            odd: Odd,
-            sport: Sport,
-            winner: Winner
+            green,
+            odd: combinedOdd
         }
-        green ? body.green=true : body.green=false
+        // green ? body.green=true : body.green=false
         debugger
         StatRequest.createStat(body).then(res => {
             if(res.status===200) {
@@ -82,10 +88,10 @@ const PredictedCard = ({
                 })
             }
         })
-    }
+    } 
 
     return (
-        <Card className={classes.root}>
+        <Card  className={classes.root} >
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="danger">
                     Successfully deleted :/
@@ -94,19 +100,27 @@ const PredictedCard = ({
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                        Title - {Title}
+                        Tipo - {type}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                        Winner - {Winner}
+                        Dia - {new Date(createdAt).getDate()} - {new Date(createdAt).getHours()}h
+                    </Typography>
+
+                    <Typography variant="subtitle1" color="textSecondary">
+                        Qt - {match.length}
+                        {match.map(item => <ul><li>{item.match}</li></ul>)}
+                        Odd - {combinedOdd}
                     </Typography>
                 </CardContent>
-                <div className={classes.controls}>
-                    <IconButton onClick={(e) => addStat(e, true)} aria-label="previous">
+                {/* <div className={classes.controls}> */}
+                <Grid container alignContent="space-between">
+
+                    <IconButton onClick={ (e) => addStatistic(e, true) } aria-label="previous">
                         <CheckCircleOutlineIcon className={classes.playIcon} />
                         <Typography>Green confirmation</Typography>
 
                     </IconButton>
-                    <IconButton onClick={(e) => addStat(e, false)} aria-label="play/pause">
+                    <IconButton onClick={(e) => addStatistic(e, false)} aria-label="play/pause">
                         <NotInterestedIcon className={classes.playIcon} />
                         <Typography>Red confirmation</Typography>
 
@@ -115,11 +129,13 @@ const PredictedCard = ({
                         onClick={e => handleClick(e)}
                         className={classes.left}
                         aria-label="next"
-                    >
+                        >
                         <DeleteIcon className={classes.playIcon} />
                         <Typography>Delete</Typography>
                     </IconButton>
-                </div>
+            </Grid>
+                {/* </div> */}
+                <Divider />
             </div>
         </Card>
     )
