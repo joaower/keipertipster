@@ -5,11 +5,11 @@ import ProtectedRoutes from './protected.routes'
 import NavBar from '../components/Material-Ui/NavBar'
 
 export default function Routes() {
-    return (
-        <AuthProvider>
-            <NavBar />
-            <PublicRoutes />
-            <ProtectedRoutes />
-        </AuthProvider>
-    )
+  return (
+    <AuthProvider>
+      <NavBar />
+      <PublicRoutes />
+      <ProtectedRoutes />
+    </AuthProvider>
+  )
 }

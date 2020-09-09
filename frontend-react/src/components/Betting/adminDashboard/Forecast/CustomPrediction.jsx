@@ -1,20 +1,10 @@
 import React from "react";
 import {
-  Card,
-  CardContent,
   Grid,
-  TextField,
   Select,
-  MenuItem,
-  InputLabel,
   Button,
 } from "@material-ui/core";
-import { CssTextField } from "../../../Material-Ui/CssTextField";
 import Utility from "../../../../util/utility";
-import MaterialTable from "../../../Material-Ui/MaterialTableCustom";
-import MaterialTableCustom from "../../../Material-Ui/MaterialTableCustom";
-import Editable from "../../../Material-Ui/Editable";
-import MatchRequest from '../../../../requests/matches'
 const CustomPrediction = ({
   winner,
   sportValue,

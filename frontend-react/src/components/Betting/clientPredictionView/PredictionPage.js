@@ -1,50 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { Paper, makeStyles } from "@material-ui/core";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import PredictionStatistics from "./PredictionStatistics";
-import PredictionHouses from "./PredictionHouses";
-import PredictionBody from "./PredictionBody";
-import MatchRequest from "../../../requests/matches";
-import { useStylesColor } from "../../style";
+import React, { useEffect, useState } from 'react'
+import { Paper, makeStyles } from '@material-ui/core'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import PredictionStatistics from './PredictionStatistics'
+import PredictionHouses from './PredictionHouses'
+import PredictionBody from './PredictionBody'
+import MatchRequest from '../../../requests/matches'
+import { useStylesColor } from '../../style'
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
   paper: {
-    display: "flex",
-    flexDirection: "colomn",
+    display: 'flex',
+    flexDirection: 'colomn',
   },
   paperChild: {
-    display: "flex",
-    flex: "1",
+    display: 'flex',
+    flex: '1',
   },
-});
+})
 
 function PredictionPage(props) {
-  const classes = useStyles();
-  const [value, setValue] = useState(1);
-  const color=useStylesColor()
+  const classes = useStyles()
+  const [value, setValue] = useState(1)
+  const color = useStylesColor()
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  const [data, setData] = useState({});
-  const [message, setMessage] = useState("");
+    setValue(newValue)
+  }
+  const [data, setData] = useState({})
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     debugger
     MatchRequest.getMatchById(props.id)
-      .then((res) => {
+      .then(res => {
         if (res.status === 200) {
-          debugger;
-          setData(res.data);
+          debugger
+          setData(res.data)
         }
       })
-      .catch((err) => {
-        setMessage(err.message);
-      });
-  }, []);
+      .catch(err => {
+        setMessage(err.message)
+      })
+  }, [])
   return (
     <>
       <Paper className={classes.root}>
@@ -57,7 +57,11 @@ function PredictionPage(props) {
           variant="fullWidth"
           centered
         >
-          <Tab disabled className={color.tBlack} label="Estatisticas do confronto" />
+          <Tab
+            disabled
+            className={color.tBlack}
+            label="Estatisticas do confronto"
+          />
           <Tab className={color.tGreen} label="Previsão" />
           <Tab disabled className={color.tBlack} label="Casas de apostas" />
         </Tabs>
@@ -68,7 +72,7 @@ function PredictionPage(props) {
       {value == 1 && <PredictionBody data={data} />}
       {value == 2 && <PredictionHouses />}
     </>
-  );
+  )
 }
 
-export default PredictionPage;
+export default PredictionPage

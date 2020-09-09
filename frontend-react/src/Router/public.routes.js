@@ -10,15 +10,15 @@ import Service from '../components/Static/Service'
 import FreeBets from '../components/Betting/FreeBets'
 
 const PublicRoutes = () => (
-    <Router>
-        <Landing path="/" />
-        <FreeBets path="/apostas" />
-        {/* <Service path="/apostas" /> */}
-        <Contact path="/contacto" />
-        <Stats path="estatisticas" />
-        <PredictionPage path="previsao/:id" />
-        <Login path="login" />
-    </Router>
+  <Router>
+    <Landing path="/" />
+    <FreeBets path="/apostas" />
+    {/* <Service path="/apostas" /> */}
+    <Contact path="/contacto" />
+    <Stats path="estatisticas" />
+    <PredictionPage path="previsao/:id" />
+    <Login path="login" />
+  </Router>
 )
 
 export default PublicRoutes

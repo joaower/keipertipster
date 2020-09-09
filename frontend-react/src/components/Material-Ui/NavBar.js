@@ -1,20 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Swipeable from "./Swipable";
-import { Menu, MenuItem, Link, Grid, Paper } from "@material-ui/core";
-import { AuthConsumer } from "../../context/AuthContext";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import HomeIcon from "@material-ui/icons/Home";
-import { navigate } from "@reach/router";
-import { useStylesColor } from "../style";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import { Link, Grid } from '@material-ui/core'
+import { navigate } from '@reach/router'
+import { useStylesColor } from '../style'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -23,30 +16,21 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    color: "#E3DCD2",
+    color: '#E3DCD2',
   },
-}));
+}))
 
 export default function NavBar() {
-  const classes = useStyles();
-  const color = useStylesColor();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const classes = useStyles()
+  const color = useStylesColor()
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={color.green}>
           <Grid
             container
-            style={{marginTop: '1rem', marginBottom: '1rem'}}
+            style={{ marginTop: '1rem', marginBottom: '1rem' }}
             direction="row"
             justify="flex-end"
             alignItems="center"
@@ -64,12 +48,12 @@ export default function NavBar() {
               <div>
                 <Typography variant="h5" className={classes.title}>
                   <Link
-                  to="/"
+                    to="/"
                     style={{
-                      textDecoration: "none",
-                      cursor: "pointer",
+                      textDecoration: 'none',
+                      cursor: 'pointer',
                     }}
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate('/')}
                     className={color.tOrange}
                   >
                     KeiperTipster - betting Hub
@@ -86,14 +70,13 @@ export default function NavBar() {
               xs={12}
               sm={6}
             >
-              
               <Grid item xs>
                 <Link
                   style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
+                    textDecoration: 'none',
+                    cursor: 'pointer',
                   }}
-                  onClick={() => navigate("/apostas")}
+                  onClick={() => navigate('/apostas')}
                   className={color.tOrange}
                 >
                   Apostas
@@ -114,10 +97,10 @@ export default function NavBar() {
               <Grid item xs>
                 <Link
                   style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
+                    textDecoration: 'none',
+                    cursor: 'pointer',
                   }}
-                  onClick={() => navigate("/contacto")}
+                  onClick={() => navigate('/contacto')}
                   className={color.tOrange}
                 >
                   Contacto fodasse
@@ -127,10 +110,10 @@ export default function NavBar() {
               <Grid item xs>
                 <Link
                   style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
+                    textDecoration: 'none',
+                    cursor: 'pointer',
                   }}
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate('/login')}
                   className={color.tOrange}
                 >
                   Login
@@ -202,5 +185,5 @@ export default function NavBar() {
         </Toolbar>
       </AppBar>
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import {
   Grid,
   Paper,
@@ -8,114 +8,111 @@ import {
   Card,
   CardContent,
   Button,
-} from "@material-ui/core";
-import Selector from "../Material-Ui/Selector";
-import MatchRequest from "../../requests/matches";
-import { Link, navigate } from "@reach/router";
-import { CssTextField } from "../Material-Ui/CssTextField";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import { useStylesColor } from "../style";
+} from '@material-ui/core'
+import { Link, navigate } from '@reach/router'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import Selector from '../Material-Ui/Selector'
+import MatchRequest from '../../requests/matches'
+import { CssTextField } from '../Material-Ui/CssTextField'
+import { useStylesColor } from '../style'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: "1rem",
+    marginBottom: '1rem',
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.primary,
   },
   paper1: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "auto",
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 'auto',
     padding: theme.spacing(2),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.primary,
   },
   title: {
-    fontFamily: "Aclonica",
+    fontFamily: 'Aclonica',
   },
   root: {
     minWidth: 275,
   },
   bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
   },
   pos: {
     marginBottom: 12,
   },
   displayTournament: {
     flex: 2,
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
   },
   displayCompetitors: {
-    display: "flex",
+    display: 'flex',
     flex: 2,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   cardFather: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   nameDisplay: {
     flex: 1,
-    display: "flex",
+    display: 'flex',
   },
-}));
+}))
 const valueSport = [
-  { id: "1", desc: "Tennis" },
-  { id: "2", desc: "Basketball" },
-  { id: "3", desc: "Soccer" },
-];
+  { id: '1', desc: 'Tennis' },
+  { id: '2', desc: 'Basketball' },
+  { id: '3', desc: 'Soccer' },
+]
 const valueDay = [
-  { id: "1", desc: "Today" },
-  { id: "2", desc: "Next matches" },
-  { id: "3", desc: "All matches" },
-];
+  { id: '1', desc: 'Today' },
+  { id: '2', desc: 'Next matches' },
+  { id: '3', desc: 'All matches' },
+]
 
 function FreeBets() {
-  const [data, setData] = useState([]);
-  const [filter, setFilter] = useState([]);
-  const [sportValue, setSportValue] = React.useState(3);
-  const [dayValue, setDayValue] = React.useState(3);
-  const [writtenFilter, setWrittenFilter] = useState("");
-  const date = new Date();
-  const color = useStylesColor();
+  const [data, setData] = useState([])
+  const [filter, setFilter] = useState([])
+  const [sportValue, setSportValue] = React.useState(3)
+  const [dayValue, setDayValue] = React.useState(3)
+  const [writtenFilter, setWrittenFilter] = useState('')
+  const date = new Date()
+  const color = useStylesColor()
 
-  const today =
-    date.getFullYear() +
-    "-" +
-    ("0" + (date.getMonth() + 1)).slice(-2) +
-    "-" +
-    ("0" + date.getDate()).slice(-2);
+  const today = `${date.getFullYear()}-${`0${date.getMonth() + 1}`.slice(
+    -2,
+  )}-${`0${date.getDate()}`.slice(-2)}`
   function loadTennisGames() {
-    setFilter();
+    setFilter()
   }
 
   function loadBasketBallGames() {
-    setFilter();
+    setFilter()
   }
 
   function loadBettedGames() {
     MatchRequest.getMatches()
-      .then((res) => {
-        setData(res.data);
+      .then(res => {
+        setData(res.data)
         debugger
-        setFilter(res.data);
+        setFilter(res.data)
       })
-      .catch((err) => {
-        if (err.response.status === 401) navigate("/login");
-      });
+      .catch(err => {
+        if (err.response.status === 401) navigate('/login')
+      })
   }
 
   useEffect(() => {
-    loadBettedGames();
-  }, []);
+    loadBettedGames()
+  }, [])
 
   /* const handleSportChange = (event) => {
     setSportValue(event.target.value);
@@ -135,50 +132,50 @@ function FreeBets() {
   }; */
 
   function loadNextMatches() {
-    let newFilter = data.filter((item) => {
-      return new Date(item.created_at) >= new Date(today);
-    });
-    setFilter(newFilter);
+    const newFilter = data.filter(
+      item => new Date(item.created_at) >= new Date(today),
+    )
+    setFilter(newFilter)
   }
 
   function loadAllMatches() {
-    setFilter(data);
+    setFilter(data)
   }
 
   function loadTodayMatches() {
-    let newFilter = data.filter((item) => {
-      return new Date(item.created_at).getDay() == new Date().getDay();
-    });
-    setFilter(newFilter);
+    const newFilter = data.filter(
+      item => new Date(item.created_at).getDay() == new Date().getDay(),
+    )
+    setFilter(newFilter)
   }
 
-  const handleDayChange = (event) => {
-    setDayValue(event.target.value);
+  const handleDayChange = event => {
+    setDayValue(event.target.value)
     switch (event.target.value) {
-      case "1":
-        loadTodayMatches();
-        break;
-      case "2":
-        loadNextMatches();
-        break;
-      case "3":
-        loadAllMatches();
-        break;
+      case '1':
+        loadTodayMatches()
+        break
+      case '2':
+        loadNextMatches()
+        break
+      case '3':
+        loadAllMatches()
+        break
       default:
-        console.log("Choose a sport");
+        console.log('Choose a sport')
     }
-  };
+  }
 
   function handleWrittenFilter(e) {
-    setWrittenFilter(e.target.value);
-    debugger;
-    const newFilter = data.filter((item) => {
-      return item.Title.toLowerCase().includes(e.target.value);
-    });
-    setFilter(newFilter);
+    setWrittenFilter(e.target.value)
+    debugger
+    const newFilter = data.filter(item =>
+      item.Title.toLowerCase().includes(e.target.value),
+    )
+    setFilter(newFilter)
   }
 
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
@@ -234,8 +231,8 @@ function FreeBets() {
           </Typography>
 
           {filter &&
-            filter.map((match) => {
-              debugger;
+            filter.map(match => {
+              debugger
               return (
                 <Card className={`${classes.root} ${color.green}`}>
                   <CardContent className={classes.cardFather}>
@@ -244,7 +241,7 @@ function FreeBets() {
                         <Typography
                           gutterBottom
                           variant="overline"
-                          style={{ fontWeight: "bold" }}
+                          style={{ fontWeight: 'bold' }}
                           className={color.tOrange}
                         >
                           Tipo de aposta
@@ -257,7 +254,7 @@ function FreeBets() {
                         <Typography
                           gutterBottom
                           variant="overline"
-                          style={{ fontWeight: "bold" }}
+                          style={{ fontWeight: 'bold' }}
                           className={color.tOrange}
                         >
                           Dia
@@ -266,8 +263,7 @@ function FreeBets() {
                           {new Date(match.createdAt).getDate()}
                         </Typography>
                       </Grid>
-                      
-                      
+
                       <Grid item xs={2}>
                         <Link to={`/previsao/${match.id}`}>
                           <VisibilityIcon
@@ -279,12 +275,12 @@ function FreeBets() {
                     </Grid>
                   </CardContent>
                 </Card>
-              );
+              )
             })}
         </Paper>
       </Grid>
     </Grid>
-  );
+  )
 }
 
-export default FreeBets;
+export default FreeBets
