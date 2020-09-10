@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_matches_matches",
+  "collectionName": "components_match_matches",
   "info": {
     "name": "match",
-    "icon": "align-justify"
+    "icon": "angle-double-up"
   },
   "options": {},
   "attributes": {
@@ -13,7 +13,10 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "string"
+    },
+    "competition": {
+      "type": "string"
     },
     "odd": {
       "type": "decimal"
@@ -21,15 +24,12 @@
     "sport": {
       "type": "enumeration",
       "enum": [
-        "Basketball",
-        "Tennis",
-        "Soccer",
-        "Hockey",
-        "Baseball"
+        "Basquetebol",
+        "Tenis",
+        "Futebol",
+        "Hoquei",
+        "Basebol"
       ]
-    },
-    "competition": {
-      "type": "string"
     }
   }
 }

@@ -16,17 +16,17 @@
         "Combinada"
       ]
     },
-    "match": {
-      "type": "component",
-      "repeatable": true,
-      "component": "matches.match"
-    },
     "risk": {
       "type": "enumeration",
       "enum": [
         "Valor",
         "Garantida"
       ]
+    },
+    "match": {
+      "type": "component",
+      "repeatable": true,
+      "component": "match.match"
     }
   }
 }

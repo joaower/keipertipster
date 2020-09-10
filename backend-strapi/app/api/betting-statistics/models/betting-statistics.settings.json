@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "betting_statistics",
   "info": {
-    "name": "Betting-Statistics"
+    "name": "betting-statistics"
   },
   "options": {
     "increments": true,
@@ -11,11 +11,6 @@
   "attributes": {
     "green": {
       "type": "boolean"
-    },
-    "log": {
-      "type": "component",
-      "repeatable": false,
-      "component": "matches.log"
     },
     "odd": {
       "type": "decimal"
