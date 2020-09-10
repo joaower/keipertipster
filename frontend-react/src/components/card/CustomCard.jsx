@@ -12,7 +12,7 @@ const CustomCard = ({ sportValue }) => {
       <CardContent className={classes.cardFather}>
         <div className={classes.displayTournament}>
           {/* {Utility.getSportValue(sportValue)} */}
-          <Typography className={color.tGrey}>New pick</Typography>
+          <Typography variant="overline" className={color.tGrey}>Nova aposta</Typography>
         </div>
         <div className={classes.displayCompetitors}>
           <p></p>
@@ -32,7 +32,7 @@ const CustomCard = ({ sportValue }) => {
               sportValue,
             }}
           >
-            <Button className={color.tOrange}>Create</Button>
+            <Typography className={color.tOrange}>Create</Typography>
           </Link>
         </div>
       </CardContent>

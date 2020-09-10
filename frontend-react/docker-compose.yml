@@ -11,3 +11,5 @@ services:
         volumes:
             - './:/app'
             - '/app/node_modules'
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t

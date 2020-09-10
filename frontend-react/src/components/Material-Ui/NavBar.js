@@ -27,26 +27,17 @@ export default function NavBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar className={color.green}>
+        <Toolbar className={color.green} style={{height: '13vh'}}>
           <Grid
             container
-            style={{ marginTop: '1rem', marginBottom: '1rem' }}
             direction="row"
             justify="flex-end"
             alignItems="center"
             spacing={1}
           >
-            <Grid container direction="row" item xs={12} sm={6}>
-              {/* <IconButton
-                                edge="start"
-                                className={classes.menuButton}
-                                color="inherit"
-                                aria-label="menu"
-                            >
-                                 <Swipeable />
-                            </IconButton> */}
+            <Grid container direction="row" item xs={12} sm={8}>
               <div>
-                <Typography variant="h5" className={classes.title}>
+                <Typography variant="h4" className={classes.title}>
                   <Link
                     to="/"
                     style={{
@@ -56,7 +47,7 @@ export default function NavBar() {
                     onClick={() => navigate('/')}
                     className={color.tOrange}
                   >
-                    KeiperTipster - betting Hub
+                    KeiperTipster
                   </Link>
                 </Typography>
               </div>
@@ -68,7 +59,7 @@ export default function NavBar() {
               alignItems="flex-end"
               justify="flex-end"
               xs={12}
-              sm={6}
+              sm={4}
             >
               <Grid item xs>
                 <Link
@@ -79,21 +70,9 @@ export default function NavBar() {
                   onClick={() => navigate('/apostas')}
                   className={color.tOrange}
                 >
-                  Apostas
+                  <Typography variant="h6">Apostas</Typography>
                 </Link>
               </Grid>
-              {/* <Grid item xs>
-                <Link
-                  style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => navigate("/estatisticas")}
-                  className={color.tOrange}
-                >
-                  Estatisticas
-                </Link>
-              </Grid> */}
               <Grid item xs>
                 <Link
                   style={{
@@ -103,7 +82,7 @@ export default function NavBar() {
                   onClick={() => navigate('/contacto')}
                   className={color.tOrange}
                 >
-                  Contacto fodasse
+                  <Typography variant="h6">Contacto</Typography>
                 </Link>
               </Grid>
 
@@ -116,7 +95,7 @@ export default function NavBar() {
                   onClick={() => navigate('/login')}
                   className={color.tOrange}
                 >
-                  Login
+                  <Typography variant="h6">Login</Typography>
                 </Link>
               </Grid>
               {/* <Grid item xs>

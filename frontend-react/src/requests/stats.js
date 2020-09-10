@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 //const API_URL = 'http://localhost:1337'
-const API_URL = 'http://35.180.205.123:1337'
+// const API_URL = 'http://35.180.205.123:1337'
 const GREEN_FILTER = '?green_eq=true'
+const API_URL = process.env.REACT_APP_API_URL;
 
 class StatRequest {
   createStat(body) {
