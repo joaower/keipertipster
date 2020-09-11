@@ -26,7 +26,7 @@
     "match": {
       "type": "component",
       "repeatable": true,
-      "component": "match.match"
+      "component": "matches.match"
     }
   }
 }

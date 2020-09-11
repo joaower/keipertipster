@@ -1,9 +1,20 @@
 import React from "react";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Paper, Typography, makeStyles } from "@material-ui/core";
 import PredictionGameCard from "./PredictionGameCard";
 import { useStylesColor } from "../../style";
-const PredictionBody = ({ data: { type, match } }) => {
+const useStyles = makeStyles(theme => ({
+  typeDisplay: {
+    padding: "2rem",
+    marginLeft: "2rem",
+    marginRight: "2rem", 
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '20rem', marginRight: '20rem',
+    },
+  }
+}))
+const PredictionBody = ({ data: { type, match, risk } }) => {
   debugger;
+  const classes=useStyles()
   const color = useStylesColor();
   // const url = Proof !== null ? Proof.url : ''
   /* const imageUrl =
@@ -15,18 +26,26 @@ const PredictionBody = ({ data: { type, match } }) => {
   return (
     <Grid container alignItems="center" alignContent="center">
       <Grid item xs={12}>
-        <Typography
+      <Typography
           variant="h5"
-          style={{ marginLeft: "5rem", fontWeight: "bold" }}
+          style={{ marginTop: '2rem', marginBottom: '2rem', fontWeight: "bold" }}
+          align="center"
         >
-          Tipo de aposta
+          TIPO DE APOSTA
         </Typography>
-        <p>{type}</p>
+        <Paper
+          className={`${color.green} ${classes.typeDisplay}`}
+          elevation={3}
+        >
+       {type && risk &&  <Typography variant="body1" className={color.tOrange} align="center">Esta é uma aposta {type.toLowerCase()} com risco de {risk.toLowerCase()} </Typography>}
+
+        </Paper>
       </Grid>
       <Grid item xs={12}>
         <Typography
           variant="h5"
-          style={{ marginLeft: "5rem", fontWeight: "bold" }}
+          style={{ marginLeft: "5rem",marginTop: '2rem', marginBottom: '2rem', fontWeight: "bold" }}
+          align="center"
         >
           JOGOS
         </Typography>

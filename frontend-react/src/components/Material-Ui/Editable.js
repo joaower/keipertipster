@@ -8,7 +8,7 @@ const Editable = ({ data, setData }) => {
       title: 'Desporto',
       field: 'sport',
       lookup: {
-        Basketball: 'Basquetebol',
+        Basquetebol: 'Basquetebol',
         Tennis: 'Tenis',
         Soccer: 'Futebol',
         Hockey: 'Hoquei',

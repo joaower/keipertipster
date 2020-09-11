@@ -7,5 +7,9 @@ class AuthRequest {
   login(body) {
     return axios.post(`${API_URL}/auth/local`, body)
   }
+  register(body) {
+    debugger
+    return axios.post(`${API_URL}/auth/local/register`, body)
+  }
 }
 export default new AuthRequest()

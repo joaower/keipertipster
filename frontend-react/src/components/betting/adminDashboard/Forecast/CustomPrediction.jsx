@@ -11,7 +11,7 @@ import Utility from '../../../../util/utility'
 import MatchRequest from '../../../../requests/matches'
 import Editable from '../../../Material-Ui/Editable'
 import AddIcon from '@material-ui/icons/Add'
-import { useStylesColor } from '@/components/style'
+import { useStylesColor } from '../../../../components/style'
 import MuiAlert from '@material-ui/lab/Alert'
 import { navigate } from '@reach/router'
 

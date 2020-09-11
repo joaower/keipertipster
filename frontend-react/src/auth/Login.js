@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -15,7 +13,7 @@ import { navigate } from '@reach/router'
 import AuthRequest from '../requests/auth'
 import { AuthConsumer } from '../context/AuthContext'
 import { CssTextField } from '../components/Material-Ui/CssTextField'
-import {  useStylesColor } from '../components/style'
+import { useStylesColor } from '../components/style'
 
 function Copyright() {
   const color = useStylesColor()
@@ -64,17 +62,8 @@ export default function Login(props) {
     }
     AuthRequest.login(body)
       .then(res => {
-        if ((res.status = 200)) {
-          debugger
-          login()
-          window.localStorage.setItem('username', res.data.user.username)
-          window.localStorage.setItem('jwt', res.data.jwt)
-          if (res.data.user.role.id === 1) {
-            navigate('/spider/dashboard')
-          } else navigate('/')
-        } else {
-          setMessage('Wrong login information')
-        }
+        login(res.data.user.username, res.data.jwt, res.data.user.role.type)
+        
       })
       .catch(e => {
         if (e.response !== undefined) {
@@ -121,10 +110,10 @@ export default function Login(props) {
                 autoComplete="current-password"
                 onChange={e => setPassword(e.target.value)}
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth
@@ -134,18 +123,24 @@ export default function Login(props) {
                   handleClick(e, login)
                 }}
               >
-                Sign In
+                Login
               </Button>
               <h1>{message}</h1>
               <Grid container>
-                <Grid item xs>
-                  <Link className={color.tBlack} variant="body2">
+                {/*<Grid item xs>
+                   <Link className={color.tBlack} variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
-                <Grid item>
-                  <Link className={color.tBlack} to="pricing" variant="body2">
-                    Don't have an account? Sign Up
+                </Grid> */}
+                <Grid item align="center" justify="center">
+                  <Link
+                    className={color.tBlack}
+                    onClick={() => navigate('/auth/registo')}
+                    variant="body2"
+                  >
+                    <Typography align="center">
+                      Não tens conta? Regista-te aqui
+                    </Typography>
                   </Link>
                 </Grid>
               </Grid>

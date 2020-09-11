@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { Link, Grid } from '@material-ui/core'
+import {
+  Link,
+  Grid,
+} from '@material-ui/core'
 import { navigate } from '@reach/router'
 import { useStylesColor } from '../style'
-
+import { AuthConsumer } from '../../context/AuthContext'
+// import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -23,11 +27,20 @@ const useStyles = makeStyles(theme => ({
 export default function NavBar() {
   const classes = useStyles()
   const color = useStylesColor()
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar className={color.green} style={{height: '13vh'}}>
+        <Toolbar className={color.green} style={{ height: '13vh' }}>
           <Grid
             container
             direction="row"
@@ -37,7 +50,7 @@ export default function NavBar() {
           >
             <Grid container direction="row" item xs={12} sm={8}>
               <div>
-                <Typography variant="h4" className={classes.title}>
+                <Typography gutterBottom variant="h4" className={classes.title}>
                   <Link
                     to="/"
                     style={{
@@ -70,7 +83,9 @@ export default function NavBar() {
                   onClick={() => navigate('/apostas')}
                   className={color.tOrange}
                 >
-                  <Typography variant="h6">Apostas</Typography>
+                  <Typography gutterBottom variant="h6">
+                    Apostas
+                  </Typography>
                 </Link>
               </Grid>
               <Grid item xs>
@@ -82,87 +97,102 @@ export default function NavBar() {
                   onClick={() => navigate('/contacto')}
                   className={color.tOrange}
                 >
-                  <Typography variant="h6">Contacto</Typography>
+                  <Typography gutterBottom variant="h6">
+                    Contacto
+                  </Typography>
                 </Link>
               </Grid>
 
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link
                   style={{
                     textDecoration: 'none',
                     cursor: 'pointer',
                   }}
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate('/auth/login')}
                   className={color.tOrange}
                 >
                   <Typography variant="h6">Login</Typography>
                 </Link>
+              </Grid> */}
+              <Grid item xs align="center" justify="center">
+                <AuthConsumer>
+                  {({ auth, logout, role }) =>
+                    auth ? (
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                        onClick={logout}
+                        className={color.tOrange}
+                      >
+                        <Typography gutterBottom variant="h6">Logout</Typography>
+                      </Link>
+                    ) : (
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => navigate('/auth/login')}
+                        className={color.tOrange}
+                      >
+                        <Typography gutterBottom  variant="h6">
+                          Login
+                        </Typography>
+                      </Link>
+                    )
+                  }
+                </AuthConsumer>
               </Grid>
-              {/* <Grid item xs>
-                                <AuthConsumer>
-                                    {({ auth, logout }) =>
-                                        auth ? (
-                                            <div>
-                                                <IconButton
-                                                    aria-label="account of current user"
-                                                    aria-controls="menu-appbar"
-                                                    aria-haspopup="true"
-                                                    onClick={handleMenu}
-                                                    color="inherit"
-                                                >
-                                                    <AccountCircle />
-                                                </IconButton>
-                                                <Menu
-                                                    id="menu-appbar"
-                                                    anchorEl={anchorEl}
-                                                    anchorOrigin={{
-                                                        vertical: 'top',
-                                                        horizontal: 'right',
-                                                    }}
-                                                    keepMounted
-                                                    transformOrigin={{
-                                                        vertical: 'top',
-                                                        horizontal: 'right',
-                                                    }}
-                                                    open={open}
-                                                    onClose={handleClose}
-                                                >
-                                                    <MenuItem
-                                                        onClick={handleClose}
-                                                    >
-                                                        
-                                                            Apostas
-                                                        <HomeIcon />
-                                                    </MenuItem>
-                                                    <MenuItem
-                                                        onClick={handleClose}
-                                                    >
-                                                        Profile
-                                                        <HomeIcon />
-                                                    </MenuItem>
-                                                    <MenuItem onClick={logout}>
-                                                        Logout
-                                                        <ExitToAppIcon />
-                                                    </MenuItem>
-                                                </Menu>
-                                            </div>
-                                        ) : (
-                                            <Button
-                                                className={color.tGrey}
-                                                onClick={() =>
-                                                    navigate('/login')
-                                                }
-                                            >
-                                                Login
-                                            </Button>
-                                        )
-                                    }
-                                </AuthConsumer>
-                            </Grid> */}
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
     </div>
   )
+}
+{
+  /* <Button
+                        className={color.tGrey}
+                        onClick={() => navigate('/login')}
+                      >
+                        Login
+                      </Button> */
+}
+{
+  /* <Button
+                        className={color.tGrey}
+                        // onClick={() => navigate('/login')}
+                        onClick={logout()}
+                      >
+                        Logout
+                      </Button> */
+}
+
+{
+  /* <div>
+                        <IconButton
+                          aria-label="account of current user"
+                          aria-controls="fade-menu"
+                          aria-haspopup="true"
+                          onClick={handleClick}
+                          color="inherit"
+                        >
+                          <AccountCircleOutlinedIcon fontSize="xs" className={color.tGrey} />
+                        </IconButton>
+                        <Menu
+                          id="fade-menu"
+                          anchorEl={anchorEl}
+                          keepMounted
+                          open={open}
+                          onClose={handleClose}
+                          TransitionComponent={Fade}
+                        >
+                          <MenuItem onClick={handleClose}>Perfil</MenuItem>
+                          {role==1 && <MenuItem onClick={handleClose}></MenuItem>}
+                          <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </Menu>
+                      </div> */
 }

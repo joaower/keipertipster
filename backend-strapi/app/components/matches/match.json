@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_matches_matches",
+  "info": {
+    "name": "match",
+    "icon": "arrows-alt"
+  },
+  "options": {},
+  "attributes": {
+    "match": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "competition": {
+      "type": "string"
+    },
+    "odd": {
+      "type": "decimal"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "sport": {
+      "type": "enumeration",
+      "enum": [
+        "Basquetebol",
+        "Tenis",
+        "Futebol",
+        "Hoquei",
+        "Basebol"
+      ]
+    }
+  }
+}

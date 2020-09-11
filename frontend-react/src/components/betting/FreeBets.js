@@ -115,6 +115,7 @@ function FreeBets() {
           setFilter(res.data)
         })
         .catch(err => {
+          debugger
           if (err.response !== undefined) {
             if (err.response.status === 401) navigate('/login')
           }
