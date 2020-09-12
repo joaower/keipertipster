@@ -9,13 +9,9 @@ const AsyncDashboard = Loadable({
     loading: Loading,
 })
 
-const AsyncDashboardPrediction = Loadable({
-    loader: () => import('../components/betting/adminDashboard/Forecast/AdminSingularPrediction'),
-    loading: Loading,
-})
 
 const AsyncDashboardCustomPrediction = Loadable({
-    loader: () => import('../components/betting/adminDashboard/Forecast/AdminDashboardCustomPrediction'),
+    loader: () => import('../components/betting/adminDashboard/Forecast/CustomPrediction'),
     loading: Loading,
 })
 
@@ -24,7 +20,6 @@ const ProtectedRoutes = () => (
         <Dash path="spider">
             <AsyncDashboard path="/dashboard" />
             <AsyncDashboardCustomPrediction path="/dashboard/custom" />
-            <AsyncDashboardPrediction path="/dashboard/:id" />
         </Dash>
     </Router>
 )

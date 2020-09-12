@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper, Typography, Grid, makeStyles, Button } from '@material-ui/core'
-import Footer from './Footer'
+import Footer from '../../shared/components/Footer'
 import { CssTextField } from '../Material-Ui/CssTextField'
 import { useStylesColor } from '../style'
 

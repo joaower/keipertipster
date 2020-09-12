@@ -1,15 +1,9 @@
 import React from "react";
 import { Grid, Paper, Typography } from "@material-ui/core";
-import Selector from "../../../../Material-Ui/Selector";
+import PropTypes from 'prop-types';
 
 const ADashboardHeader = ({
   classes,
-  sportValue,
-  handleSportChange,
-  valueSport,
-  dayValue,
-  handleDayChange,
-  valueDay,
 }) => {
   return (
     <Grid container direction="row">
@@ -23,34 +17,12 @@ const ADashboardHeader = ({
           </Typography>
         </Paper>
       </Grid>
-      {/* <Grid item xs={12}>
-        <Paper
-          className={classes.paper}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <Selector
-            key="1"
-            value={sportValue}
-            handleChange={handleSportChange}
-            type="Desporto"
-            valueArray={valueSport}
-            helpText="Escolhe o tipo de desporto"
-          />
-          <Selector
-            value={dayValue}
-            handleChange={handleDayChange}
-            key="2"
-            type="Dia"
-            valueArray={valueDay}
-            helpText="Escolhe o dia"
-          />
-        </Paper>
-      </Grid> */}
     </Grid>
   );
 };
+
+ADashboardHeader.propType = {
+  classes: PropTypes.object
+}
 
 export default ADashboardHeader;

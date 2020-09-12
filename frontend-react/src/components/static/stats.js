@@ -10,7 +10,6 @@ import {
 } from '@devexpress/dx-react-chart'
 
 import { navigate } from '@reach/router'
-import { green } from '@material-ui/core/colors'
 import StatRequest from '../../requests/stats'
 
 function Stats() {
@@ -25,7 +24,7 @@ function Stats() {
       .catch(err => {
         if (err.response !== undefined) {
           if (err.response.status === 401) {
-            navigate('/login')
+            navigate('/auth/login')
           }
         }
       })
@@ -37,7 +36,7 @@ function Stats() {
       .catch(err => {
         if (err.response !== undefined) {
           if (err.response.status === 401) {
-            navigate('/login')
+            navigate('/auth/login')
           }
         }
       })

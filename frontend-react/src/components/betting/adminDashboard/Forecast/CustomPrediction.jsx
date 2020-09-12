@@ -15,7 +15,7 @@ import { useStylesColor } from '../../../../components/style'
 import MuiAlert from '@material-ui/lab/Alert'
 import { navigate } from '@reach/router'
 
-const CustomPrediction = ({}) => {
+const CustomPrediction = () => {
   const [type, setType] = React.useState(1)
   const [risk, setRisk] = React.useState(1)
 
@@ -39,7 +39,6 @@ const CustomPrediction = ({}) => {
       risk: Utility.getRiskValue(risk.toString()),
       match: data,
     }
-    debugger
     MatchRequest.createMatch(fullBody)
       .then(res => {
         debugger
@@ -123,16 +122,6 @@ const CustomPrediction = ({}) => {
                 </Fab>
               </Grid>
             </Grid>
-            {/* <CssTextField
-              placeholder=""
-              multiline
-              variant="outlined"
-              label="Descrição"
-              fullWidth
-              rows={2}
-              rowsMax={10}
-              //   onChange={(e) => setDescription(e.target.value)}
-            /> */}
           </Grid>
         </Grid>
       </form>

@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, CardContent, Button, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import { Link } from "@reach/router";
 import { useStylesCard, useStylesColor } from "../style";
-import Utility from "../../util/utility";
 
 const CustomCard = ({ sportValue }) => {
   const classes = useStylesCard();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import PromotionGrid from './PromotionGrid';
-import Footer from './Footer';
+import Footer from '../../shared/components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   text: {

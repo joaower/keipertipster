@@ -69,6 +69,8 @@ function DashBoard() {
 
     MatchRequest.getMatches().then(res => {
       setAlreadyData(res.data)
+    }).catch(err => {
+      debugger
     })
   }, [])
 

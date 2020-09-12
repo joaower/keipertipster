@@ -62,8 +62,7 @@ export default function Login(props) {
     }
     AuthRequest.login(body)
       .then(res => {
-        login(res.data.user.username, res.data.jwt, res.data.user.role.type)
-        
+        login(res.data.user.username, res.data.jwt, res.data.user.role.type, res.data.user.firstName)
       })
       .catch(e => {
         if (e.response !== undefined) {

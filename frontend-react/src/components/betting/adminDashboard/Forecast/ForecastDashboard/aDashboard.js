@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import { navigate } from '@reach/router'
-import SoccerRequest from '../../../../../requests/node/soccer'
 import MatchRequest from '../../../../../requests/matches'
 import BasketballRequest from '../../../../../requests/node/basketball'
 
@@ -115,6 +113,8 @@ function DashBoard() {
         setOpen(true)
         removeAlreadyDataFromState(id)
       }
+    }).catch(err => {
+      debugger
     })
   }
 

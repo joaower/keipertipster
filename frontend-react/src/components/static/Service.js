@@ -1,6 +1,6 @@
 import React from 'react'
 import ServiceGrid from './ServiceGrid'
-import Footer from './Footer'
+import Footer from '../../shared/components/Footer'
 
 const Service = () => (
   <>

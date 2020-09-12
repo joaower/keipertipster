@@ -57,7 +57,7 @@ function PredictionPage(props) {
           setMessage(err.message)
         })
     }
-  }, [])
+  }, [props.id])
   return (
     <>
       <Paper className={classes.root}>
@@ -80,10 +80,9 @@ function PredictionPage(props) {
         </Tabs>
       </Paper>
       {message}
-
-      {value == 0 && <PredictionStatistics />}
-      {value == 1 && <PredictionBody data={data} />}
-      {value == 2 && <PredictionHouses />}
+      {value === 0 && <PredictionStatistics />}
+      {value === 1 && <PredictionBody data={data} />}
+      {value === 2 && <PredictionHouses />}
     </>
   )
 }

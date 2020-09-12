@@ -1,27 +1,26 @@
-import React from "react";
-import { Grid, Paper, Typography } from "@material-ui/core";
-import GameCard from "../../../../card/GameCard";
-import CustomCard from "../../../../card/CustomCard";
-import SwipeableViews from "react-swipeable-views";
-import Tabs from "@material-ui/core/Tabs";
-import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Tab from "@material-ui/core/Tab";
-import { useStylesColor } from "../../../../style";
-const AdminToPredictMatches = ({ classes, data, sportValue }) => {
-  const [value, setValue] = React.useState(0);
-  const color=useStylesColor()
+import React from 'react'
+import { Grid, Paper, Typography } from '@material-ui/core'
+import CustomCard from '../../../../card/CustomCard'
+import SwipeableViews from 'react-swipeable-views'
+import Tabs from '@material-ui/core/Tabs'
+import { useTheme } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box'
+import Tab from '@material-ui/core/Tab'
+import { useStylesColor } from '../../../../style'
+const AdminToPredictMatches = ({ classes }) => {
+  const [value, setValue] = React.useState(0)
+  const color = useStylesColor()
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   const handleChangeIndex = (index: number) => {
-    setValue(index);
-  };
+    setValue(index)
+  }
 
-  const theme = useTheme();
+  const theme = useTheme()
   function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const { children, value, index, ...other } = props
 
     return (
       <div
@@ -37,19 +36,23 @@ const AdminToPredictMatches = ({ classes, data, sportValue }) => {
           </Box>
         )}
       </div>
-    );
+    )
   }
   function a11yProps(index: any) {
     return {
       id: `full-width-tab-${index}`,
-      "aria-controls": `full-width-tabpanel-${index}`,
-    };
+      'aria-controls': `full-width-tabpanel-${index}`,
+    }
   }
   return (
     <Grid item xs={12} md={6}>
-        <CustomCard  />
+      <CustomCard />
       <Paper className={classes.paper1}>
-        <Typography variant="h5" style={{marginBottom: '1rem'}} className={classes.title}>
+        <Typography
+          variant="h5"
+          style={{ marginBottom: '1rem' }}
+          className={classes.title}
+        >
           Jogos por avaliar apresentados aqui
         </Typography>
         <Tabs
@@ -59,7 +62,7 @@ const AdminToPredictMatches = ({ classes, data, sportValue }) => {
           textColor="primary"
           variant="fullWidth"
           aria-label="full width tabs example"
-          TabIndicatorProps={{style: {background:'red'}}}
+          TabIndicatorProps={{ style: { background: 'red' } }}
         >
           <Tab className={color.tGreen} label="Basquetebol" {...a11yProps(0)} />
           <Tab label="Tenis" {...a11yProps(1)} />
@@ -68,7 +71,7 @@ const AdminToPredictMatches = ({ classes, data, sportValue }) => {
           <Tab label="Hoquei" {...a11yProps(4)} />
         </Tabs>
         <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={value}
           onChangeIndex={handleChangeIndex}
         >
@@ -98,7 +101,7 @@ const AdminToPredictMatches = ({ classes, data, sportValue }) => {
                 ))} */}
       </Paper>
     </Grid>
-  );
-};
+  )
+}
 
-export default AdminToPredictMatches;
+export default AdminToPredictMatches

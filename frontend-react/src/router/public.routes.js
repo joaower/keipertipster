@@ -8,7 +8,7 @@ import LandingPage from '../components/static/LandingPage'
 import Contact from '../components/static/Contact'
 // import Service from '../components/Static/Service'
 import FreeBets from '../components/betting/FreeBets'
-import SignUp from '../auth/SignUp'
+import SignUp from '../auth/Register/SignUp'
 
 const PublicRoutes = () => (
   <Router>

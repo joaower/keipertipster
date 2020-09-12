@@ -2,6 +2,8 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { useStylesColor } from '../../style'
 import SportsSoccerOutlinedIcon from '@material-ui/icons/SportsSoccerOutlined'
+import PropTypes from 'prop-types';
+
 const PredictionGameCard = ({
   data: { sport, competition, match, odd, description },
 }) => {
@@ -58,7 +60,8 @@ const PredictionGameCard = ({
             >
               {odd}
             </Typography>
-          </Grid>{/* 
+          </Grid>
+          {/* 
           <Grid item xs={0} >
             {<SportsSoccerOutlinedIcon className={color.tGrey} />}
           </Grid> */}
@@ -69,11 +72,20 @@ const PredictionGameCard = ({
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={2} align="center" >
-            {<SportsSoccerOutlinedIcon className={color.tGrey} style={{fontSize: '3rem'}} />}
+      <Grid item xs={12} sm={2} align="center">
+        {
+          <SportsSoccerOutlinedIcon
+            className={color.tGrey}
+            style={{ fontSize: '3rem' }}
+          />
+        }
       </Grid>
     </Grid>
   )
+}
+
+PredictionGameCard.propTypes = {
+  data: { sport: PropTypes.string.isRequired, competition: PropTypes.string.isRequired, match: PropTypes.string.isRequired, odd: PropTypes.number.isRequired, description: PropTypes.string.isRequired }
 }
 
 export default PredictionGameCard

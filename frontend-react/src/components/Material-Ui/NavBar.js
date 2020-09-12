@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -27,16 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function NavBar() {
   const classes = useStyles()
   const color = useStylesColor()
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -152,47 +143,4 @@ export default function NavBar() {
       </AppBar>
     </div>
   )
-}
-{
-  /* <Button
-                        className={color.tGrey}
-                        onClick={() => navigate('/login')}
-                      >
-                        Login
-                      </Button> */
-}
-{
-  /* <Button
-                        className={color.tGrey}
-                        // onClick={() => navigate('/login')}
-                        onClick={logout()}
-                      >
-                        Logout
-                      </Button> */
-}
-
-{
-  /* <div>
-                        <IconButton
-                          aria-label="account of current user"
-                          aria-controls="fade-menu"
-                          aria-haspopup="true"
-                          onClick={handleClick}
-                          color="inherit"
-                        >
-                          <AccountCircleOutlinedIcon fontSize="xs" className={color.tGrey} />
-                        </IconButton>
-                        <Menu
-                          id="fade-menu"
-                          anchorEl={anchorEl}
-                          keepMounted
-                          open={open}
-                          onClose={handleClose}
-                          TransitionComponent={Fade}
-                        >
-                          <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                          {role==1 && <MenuItem onClick={handleClose}></MenuItem>}
-                          <MenuItem onClick={handleClose}>Logout</MenuItem>
-                        </Menu>
-                      </div> */
 }
