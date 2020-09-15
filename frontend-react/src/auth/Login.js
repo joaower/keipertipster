@@ -22,8 +22,10 @@ function Copyright() {
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Vidal's Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
+      </Link>
+      {' '}
+      {new Date().getFullYear()}
+      .
     </Typography>
   )
 }
@@ -62,7 +64,12 @@ export default function Login(props) {
     }
     AuthRequest.login(body)
       .then(res => {
-        login(res.data.user.username, res.data.jwt, res.data.user.role.type, res.data.user.firstName)
+        login(
+          res.data.user.username,
+          res.data.jwt,
+          res.data.user.role.type,
+          res.data.user.firstName,
+        )
       })
       .catch(e => {
         if (e.response !== undefined) {
@@ -126,7 +133,7 @@ export default function Login(props) {
               </Button>
               <h1>{message}</h1>
               <Grid container>
-                {/*<Grid item xs>
+                {/* <Grid item xs>
                    <Link className={color.tBlack} variant="body2">
                     Forgot password?
                   </Link>

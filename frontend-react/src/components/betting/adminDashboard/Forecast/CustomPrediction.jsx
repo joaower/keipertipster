@@ -7,13 +7,13 @@ import {
   Snackbar,
   Typography,
 } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import MuiAlert from '@material-ui/lab/Alert'
+import { navigate } from '@reach/router'
 import Utility from '../../../../util/utility'
 import MatchRequest from '../../../../requests/matches'
 import Editable from '../../../Material-Ui/Editable'
-import AddIcon from '@material-ui/icons/Add'
-import { useStylesColor } from '../../../../components/style'
-import MuiAlert from '@material-ui/lab/Alert'
-import { navigate } from '@reach/router'
+import { useStylesColor } from '../../../style'
 
 const CustomPrediction = () => {
   const [type, setType] = React.useState(1)
@@ -34,20 +34,55 @@ const CustomPrediction = () => {
     return <MuiAlert elevation={6} variant="filled" {...props} />
   }
   function addFreeBet() {
+    /* const test = [{
+      sport: 'lol',
+      competition: ' lol',
+      date: '2020-09-14T18:49:08.976Z',
+      odd: 2,
+      description: 'asd',
+      match: 'lol'
+    }] */
+     /* let fData = data
+    let match = []
+    // data.forEach(item => delete item.tableData)
+    for (var i = 0; i < fData.length; i++) {
+      delete fData[i].tableData
+      match.push(fData[i])
+    } */
+    
     const fullBody = {
       type: Utility.getTypeValue(type.toString()),
       risk: Utility.getRiskValue(risk.toString()),
-      match: data,
+      match: data
     }
+    /* const fullBody = {
+      type: 'Simples',
+      risk: 'Valor',
+      match: [{
+        sport: 'Futebol',
+        competition: 'Competicao',
+        match: 'Este vs este',
+        description: 'descricao',
+        odd: 2,
+        date: '2020-09-14T18:49:08.976Z'
+      }]
+    }  */
+    debugger
     MatchRequest.createMatch(fullBody)
       .then(res => {
         debugger
-
+        console.log(res.status)
         setOpen(true)
         setTimeout(() => navigate('/spider/dashboard'), 4000)
+        setData([])
       })
       .catch(err => {
         debugger
+        if (err) {
+          if (err.status > 400) {
+            console.log('Erro')
+          }
+        }
       })
   }
 

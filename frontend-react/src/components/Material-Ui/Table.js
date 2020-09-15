@@ -15,9 +15,9 @@ import {
   SaveAlt,
   Search,
   ViewColumn,
-} from '@material-ui/icons'
-import MaterialTable from 'material-table'
-import React, { forwardRef } from 'react'
+} from '@material-ui/icons';
+import MaterialTable from 'material-table';
+import React, { forwardRef } from 'react';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -42,8 +42,8 @@ const tableIcons = {
   SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-}
+};
 
-const Table = props => <MaterialTable icons={tableIcons} {...props} />
+const Table = props => <MaterialTable icons={tableIcons} {...props} />;
 
-export default Table
+export default Table;

@@ -1,37 +1,38 @@
-import React, { useState } from 'react'
-import { navigate } from '@reach/router'
+import React, { useState } from 'react';
+import { navigate } from '@reach/router';
 
-const AuthContext = React.createContext()
+const AuthContext = React.createContext();
 
 const AuthProvider = props => {
-  const [jwt, setJwt] = useState(window.localStorage.getItem('jwt'))
-  const user = window.localStorage.getItem('username')
-  const [auth, setAuth] = useState(jwt !== '' ? jwt : '')
-  const [username, setUsername] = useState(user !== '' ? user : '')
-  const [role, setRole] = useState(false)
-  const [firstName, setFirstName] = useState(window.localStorage.getItem('firstName'))
+  const cookie = window.localStorage
+  const [jwt, setJwt] = useState(cookie.getItem('jwt'));
+  const user = cookie.getItem('username');
+  const [auth, setAuth] = useState(jwt !== '' ? jwt : '');
+  const [username, setUsername] = useState(user !== '' ? user : '');
+  const [role, setRole] = useState(false);
+  const [firstName, setFirstName] = useState(cookie.getItem('firstName'));
   const login = (uName, token, roleId, fName) => {
-    window.localStorage.setItem('firstName', fName)
-    setFirstName(fName)
-    window.localStorage.setItem('username', uName)
-    setUsername(username)
-    window.localStorage.setItem('jwt', token)
-    setJwt(token)
+    cookie.setItem('firstName', fName);
+    setFirstName(fName);
+    cookie.setItem('username', uName);
+    setUsername(username);
+    cookie.setItem('jwt', token);
+    setJwt(token);
     if (roleId === 'privileged') {
-      setRole(true)
-      navigate('/spider/dashboard')
+      setRole(true);
+      navigate('/spider/dashboard');
     } else {
-      navigate('/')
+      navigate('/');
     }
-    setTimeout(() => setAuth(true), 1000)
-  }
+    setTimeout(() => setAuth(true), 1000);
+  };
   const logout = () => {
-    setTimeout(() => setAuth(false), 1000)
-    window.localStorage.clear()
-  }
+    setTimeout(() => setAuth(false), 1000);
+    cookie.clear();
+  };
   const handleRole = (r) => {
-    setRole(r)
-  }
+    setRole(r);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -46,9 +47,9 @@ const AuthProvider = props => {
     >
       {props.children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
-const AuthConsumer = AuthContext.Consumer
+const AuthConsumer = AuthContext.Consumer;
 
-export { AuthProvider, AuthConsumer }
+export { AuthProvider, AuthConsumer };

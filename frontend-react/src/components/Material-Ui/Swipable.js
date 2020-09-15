@@ -1,18 +1,18 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
-import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import LockOpenIcon from '@material-ui/icons/LockOpen'
-import HomeIcon from '@material-ui/icons/Home'
-import EqualizerIcon from '@material-ui/icons/Equalizer'
-import { Link } from '@reach/router'
-import MenuIcon from '@material-ui/icons/Menu'
-import { AuthConsumer } from '../../context/AuthContext'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import HomeIcon from '@material-ui/icons/Home';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import { Link } from '@reach/router';
+import MenuIcon from '@material-ui/icons/Menu';
+import { AuthConsumer } from '../../context/AuthContext';
 
 const useStyles = makeStyles({
   list: {
@@ -34,28 +34,28 @@ const useStyles = makeStyles({
     paddingBottom: '3rem',
     textAlign: 'center',
   },
-})
+});
 
 export default function Swipeable() {
-  const classes = useStyles()
+  const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
-  })
+  });
 
   const toggleDrawer = (side, open) => event => {
     if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event
+      && event.type === 'keydown'
+      && (event.key === 'Tab' || event.key === 'Shift')
     ) {
-      return
+      return;
     }
 
-    setState({ ...state, [side]: open })
-  }
+    setState({ ...state, [side]: open });
+  };
 
   const sideList = (side, username) => (
     <div
@@ -66,7 +66,10 @@ export default function Swipeable() {
     >
       <List>
         <Link to="/">
-          <ListItem className={classes.logo}>Welcome {username}</ListItem>
+          <ListItem className={classes.logo}>
+            Welcome
+            {username}
+          </ListItem>
           <ListItem button key="Apostas">
             <ListItemIcon>
               <HomeIcon className={classes.iconColor} />
@@ -97,30 +100,28 @@ export default function Swipeable() {
         </Link>
       </List>
     </div>
-  )
+  );
 
   return (
     <div>
       <AuthConsumer>
-        {({ auth, username }) =>
-          auth ? (
-            <>
-              <MenuIcon onClick={toggleDrawer('left', true)} />
-              {/* <Button color="primary" variant="outlined" fullWidth onClick={toggleDrawer('left', true)}>Open Left</Button> */}
+        {({ auth, username }) => (auth ? (
+          <>
+            <MenuIcon onClick={toggleDrawer('left', true)} />
+            {/* <Button color="primary" variant="outlined" fullWidth onClick={toggleDrawer('left', true)}>Open Left</Button> */}
 
-              <SwipeableDrawer
-                open={state.left}
-                onClose={toggleDrawer('left', false)}
-                onOpen={toggleDrawer('left', true)}
-              >
-                {sideList('left', username)}
-              </SwipeableDrawer>
-            </>
-          ) : (
-            <></>
-          )
-        }
+            <SwipeableDrawer
+              open={state.left}
+              onClose={toggleDrawer('left', false)}
+              onOpen={toggleDrawer('left', true)}
+            >
+              {sideList('left', username)}
+            </SwipeableDrawer>
+          </>
+        ) : (
+          <></>
+        ))}
       </AuthConsumer>
     </div>
-  )
+  );
 }

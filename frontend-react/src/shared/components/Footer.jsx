@@ -1,16 +1,16 @@
-import React from 'react'
-import { Grid, Typography, Divider } from '@material-ui/core'
-import InstagramIcon from '@material-ui/icons/Instagram'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import TwitterIcon from '@material-ui/icons/Twitter'
-import { navigate } from '@reach/router'
-import { useStylesColor } from '../../components/style'
-import InboxIcon from '@material-ui/icons/Inbox'
-import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined'
-import imageURL from './logo.jpeg'
+import React from 'react';
+import { Grid, Typography, Divider } from '@material-ui/core';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import { navigate } from '@reach/router';
+import InboxIcon from '@material-ui/icons/Inbox';
+import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined';
+import { useStylesColor } from '../../components/style';
+import imageURL from './logo.jpeg';
 
 const Footer = () => {
-  const color = useStylesColor()
+  const color = useStylesColor();
   return (
     <footer
       className={color.grey}
@@ -34,7 +34,8 @@ const Footer = () => {
                 Tens alguma questão?
               </Typography>
               <Typography gutterBottom variant="body2">
-                <InboxIcon style={{ marginRight: '1rem' }} fontSize="small" />{' '}
+                <InboxIcon style={{ marginRight: '1rem' }} fontSize="small" />
+                {' '}
                 bobapostas@gmail.com
               </Typography>
             </li>
@@ -47,7 +48,8 @@ const Footer = () => {
                 <QueryBuilderOutlinedIcon
                   style={{ marginRight: '1rem' }}
                   fontSize="small"
-                />{' '}
+                />
+                {' '}
                 15-17h
               </Typography>
             </li>
@@ -77,7 +79,7 @@ const Footer = () => {
             Conecta-te connosco
           </Typography>
 
-          <p></p>
+          <p />
           <TwitterIcon
             className={color.tBlack}
             style={{ cursor: 'pointer', marginRight: '1rem', fontSize: '2rem' }}
@@ -85,11 +87,9 @@ const Footer = () => {
           />
           <FacebookIcon
             className={color.tBlack}
-            onClick={() =>
-              navigate(
-                'https://www.facebook.com/keipertipster-106156397668326/',
-              )
-            }
+            onClick={() => navigate(
+              'https://www.facebook.com/keipertipster-106156397668326/',
+            )}
             style={{ cursor: 'pointer', marginRight: '1rem', fontSize: '2rem' }}
             size="large"
           />
@@ -100,18 +100,18 @@ const Footer = () => {
             size="large"
           />
           <br />
-          <Grid style={{marginTop: '3rem'}} container justify="center">
-            <Grid item xs justify="center" style={{width: '5rem', height: '5rem'}}>
-                <img
-                  style={{ maxWidth: '100%', maxHeight: '100%' }}
-                  src={imageURL}
-                />
+          <Grid style={{ marginTop: '3rem' }} container justify="center">
+            <Grid item xs justify="center" style={{ width: '5rem', height: '5rem' }}>
+              <img
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+                src={imageURL}
+              />
             </Grid>
           </Grid>
         </Grid>
       </Grid>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

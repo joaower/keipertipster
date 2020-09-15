@@ -33,12 +33,10 @@ function PredictionPage(props) {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    debugger
     if (window.localStorage.getItem('jwt') !== null) {
       MatchRequest.getMatchById(props.id)
         .then(res => {
           if (res.status === 200) {
-            debugger
             setData(res.data)
           }
         })
@@ -49,7 +47,6 @@ function PredictionPage(props) {
       MatchRequest.getMatchByIdUnauthenticated(props.id)
         .then(res => {
           if (res.status === 200) {
-            debugger
             setData(res.data)
           }
         })

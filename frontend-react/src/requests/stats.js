@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 
 // const API_URL = 'http://localhost:1337'
- const API_URL = 'http://52.47.201.94:1337'
-const GREEN_FILTER = '?green_eq=true'
+const API_URL = 'http://52.47.201.94:1337';
+const GREEN_FILTER = '?green_eq=true';
 // const API_URL = process.env.REACT_APP_API_URL;
 
 class StatRequest {
@@ -12,7 +12,7 @@ class StatRequest {
         'Content-Type': 'application/json',
         Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
       },
-    })
+    });
   }
 
   getStats() {
@@ -21,7 +21,7 @@ class StatRequest {
         'Content-Type': 'application/json',
         Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
       },
-    })
+    });
   }
 
   countStats() {
@@ -30,7 +30,7 @@ class StatRequest {
         'Content-Type': 'application/json',
         Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
       },
-    })
+    });
   }
 
   countGreen() {
@@ -39,7 +39,7 @@ class StatRequest {
         'Content-Type': 'application/json',
         Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
       },
-    })
+    });
   }
 }
-export default new StatRequest()
+export default new StatRequest();

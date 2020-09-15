@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const PredictionHouses = () => {
-    return (
-        <div>
-            PredictionHousess
-        </div>
-    )
-}
+const PredictionHouses = () => (
+  <div>
+    PredictionHousess
+  </div>
+);
 
-export default PredictionHouses
+export default PredictionHouses;

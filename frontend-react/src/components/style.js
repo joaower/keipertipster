@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
 
-const drawerWidth = 240
+const drawerWidth = 240;
 
 export const useStylesColor = makeStyles({
   green: {
@@ -27,7 +27,7 @@ export const useStylesColor = makeStyles({
   tOrange: {
     color: '#CC8B65!important',
   },
-})
+});
 
 export const useStylesCard = makeStyles({
   root: {
@@ -62,7 +62,7 @@ export const useStylesCard = makeStyles({
     flex: 1,
     display: 'flex',
   },
-})
+});
 
 export const useStylesDrawer = makeStyles(theme => ({
   root: {
@@ -129,4 +129,4 @@ export const useStylesDrawer = makeStyles(theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-}))
+}));

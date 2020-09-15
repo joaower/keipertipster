@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@material-ui/core/styles'
-import green from '@material-ui/core/colors/green'
-import { blue } from '@material-ui/core/colors'
+import { createMuiTheme } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import { blue } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -10,6 +10,6 @@ const theme = createMuiTheme({
   status: {
     danger: 'orange',
   },
-})
+});
 
-export default theme
+export default theme;

@@ -13,7 +13,7 @@ export default class TableBodyRow extends React.Component {
     const size = this.getElementSize()
     const mapArr = this.props.columns
       .filter(
-        columnDef => !columnDef.hidden && !(columnDef.tableData.groupOrder > -1)
+        columnDef => !columnDef.hidden && !(columnDef.tableData.groupOrder > -1),
       )
       .sort((a, b) => a.tableData.columnOrder - b.tableData.columnOrder)
       .map((columnDef, index) => {
@@ -24,12 +24,7 @@ export default class TableBodyRow extends React.Component {
             icons={this.props.icons}
             columnDef={columnDef}
             value={value}
-            key={
-              'cell-' +
-              this.props.data.tableData.id +
-              '-' +
-              columnDef.tableData.id
-            }
+            key={`cell-${this.props.data.tableData.id}-${columnDef.tableData.id}`}
             rowData={this.props.data}
           />
         )
@@ -49,7 +44,7 @@ export default class TableBodyRow extends React.Component {
         style={{
           width: baseIconSize * actions.length,
           padding: '0px 5px',
-          ...this.props.options.actionsCellStyle
+          ...this.props.options.actionsCellStyle,
         }}
       >
         <div style={{ display: 'flex' }}>
@@ -63,6 +58,7 @@ export default class TableBodyRow extends React.Component {
       </TableCell>
     )
   }
+
   renderSelectionColumn() {
     let checkboxProps = this.props.options.selectionProps || {}
     if (typeof checkboxProps === 'function') {
@@ -72,15 +68,14 @@ export default class TableBodyRow extends React.Component {
     const size = this.getElementSize()
     const baseIconSize = size === 'medium' ? 42 : 26
 
-    const styles =
-      size === 'medium'
-        ? {
-            marginLeft: this.props.level * 9
-          }
-        : {
-            padding: '4px',
-            marginLeft: 5 + this.props.level * 9
-          }
+    const styles = size === 'medium'
+      ? {
+        marginLeft: this.props.level * 9,
+      }
+      : {
+        padding: '4px',
+        marginLeft: 5 + this.props.level * 9,
+      }
 
     return (
       <TableCell
@@ -94,9 +89,7 @@ export default class TableBodyRow extends React.Component {
           checked={this.props.data.tableData.checked === true}
           onClick={e => e.stopPropagation()}
           value={this.props.data.tableData.id.toString()}
-          onChange={event =>
-            this.props.onRowSelected(event, this.props.path, this.props.data)
-          }
+          onChange={event => this.props.onRowSelected(event, this.props.path, this.props.data)}
           style={styles}
           {...checkboxProps}
         />
@@ -105,18 +98,17 @@ export default class TableBodyRow extends React.Component {
   }
 
   rotateIconStyle = isOpen => ({
-    transform: isOpen ? 'rotate(90deg)' : 'none'
+    transform: isOpen ? 'rotate(90deg)' : 'none',
   })
 
   renderDetailPanelColumn() {
-    const CustomIcon = ({ icon, style }) =>
-      typeof icon === 'string' ? (
-        <Icon style={style}>{icon}</Icon>
-      ) : (
-        React.createElement(icon, { style })
-      )
+    const CustomIcon = ({ icon, style }) => (typeof icon === 'string' ? (
+      <Icon style={style}>{icon}</Icon>
+    ) : (
+      React.createElement(icon, { style })
+    ))
 
-    if (typeof this.props.detailPanel == 'function') {
+    if (typeof this.props.detailPanel === 'function') {
       return (
         <TableCell
           size={this.getElementSize()}
@@ -128,12 +120,14 @@ export default class TableBodyRow extends React.Component {
             size={this.getElementSize()}
             style={{
               transition: 'all ease 200ms',
-              ...this.rotateIconStyle(this.props.data.tableData.showDetailPanel)
+              ...this.rotateIconStyle(
+                this.props.data.tableData.showDetailPanel,
+              ),
             }}
             onClick={event => {
               this.props.onToggleDetailPanel(
                 this.props.path,
-                this.props.detailPanel
+                this.props.detailPanel,
               )
               event.stopPropagation()
             }}
@@ -142,97 +136,92 @@ export default class TableBodyRow extends React.Component {
           </IconButton>
         </TableCell>
       )
-    } else {
-      return (
-        <TableCell
-          size={this.getElementSize()}
-          padding="none"
-          key="key-detail-panel-column"
+    }
+    return (
+      <TableCell
+        size={this.getElementSize()}
+        padding="none"
+        key="key-detail-panel-column"
+      >
+        <div
+          style={{
+            width: 42 * this.props.detailPanel.length,
+            textAlign: 'center',
+            display: 'flex',
+          }}
         >
-          <div
-            style={{
-              width: 42 * this.props.detailPanel.length,
-              textAlign: 'center',
-              display: 'flex'
-            }}
-          >
-            {this.props.detailPanel.map((panel, index) => {
-              if (typeof panel === 'function') {
-                panel = panel(this.props.data)
-              }
+          {this.props.detailPanel.map((panel, index) => {
+            if (typeof panel === 'function') {
+              panel = panel(this.props.data)
+            }
 
-              const isOpen =
-                (this.props.data.tableData.showDetailPanel || '').toString() ===
-                panel.render.toString()
+            const isOpen = (this.props.data.tableData.showDetailPanel || '').toString()
+              === panel.render.toString()
 
-              let iconButton = <this.props.icons.DetailPanel />
-              let animation = true
-              if (isOpen) {
-                if (panel.openIcon) {
-                  iconButton = <CustomIcon icon={panel.openIcon} />
-                  animation = false
-                } else if (panel.icon) {
-                  iconButton = <CustomIcon icon={panel.icon} />
-                }
+            let iconButton = <this.props.icons.DetailPanel />
+            let animation = true
+            if (isOpen) {
+              if (panel.openIcon) {
+                iconButton = <CustomIcon icon={panel.openIcon} />
+                animation = false
               } else if (panel.icon) {
                 iconButton = <CustomIcon icon={panel.icon} />
-                animation = false
               }
+            } else if (panel.icon) {
+              iconButton = <CustomIcon icon={panel.icon} />
+              animation = false
+            }
 
+            iconButton = (
+              <IconButton
+                size={this.getElementSize()}
+                key={`key-detail-panel-${index}`}
+                style={{
+                  transition: 'all ease 200ms',
+                  ...this.rotateIconStyle(animation && isOpen),
+                }}
+                disabled={panel.disabled}
+                onClick={event => {
+                  this.props.onToggleDetailPanel(this.props.path, panel.render)
+                  event.stopPropagation()
+                }}
+              >
+                {iconButton}
+              </IconButton>
+            )
+
+            if (panel.tooltip) {
               iconButton = (
-                <IconButton
-                  size={this.getElementSize()}
-                  key={'key-detail-panel-' + index}
-                  style={{
-                    transition: 'all ease 200ms',
-                    ...this.rotateIconStyle(animation && isOpen)
-                  }}
-                  disabled={panel.disabled}
-                  onClick={event => {
-                    this.props.onToggleDetailPanel(
-                      this.props.path,
-                      panel.render
-                    )
-                    event.stopPropagation()
-                  }}
+                <Tooltip
+                  key={`key-detail-panel-${index}`}
+                  title={panel.tooltip}
                 >
                   {iconButton}
-                </IconButton>
+                </Tooltip>
               )
+            }
 
-              if (panel.tooltip) {
-                iconButton = (
-                  <Tooltip
-                    key={'key-detail-panel-' + index}
-                    title={panel.tooltip}
-                  >
-                    {iconButton}
-                  </Tooltip>
-                )
-              }
-
-              return iconButton
-            })}
-          </div>
-        </TableCell>
-      )
-    }
+            return iconButton
+          })}
+        </div>
+      </TableCell>
+    )
   }
 
   getStyle(index, level) {
     let style = {
-      transition: 'all ease 300ms'
+      transition: 'all ease 300ms',
     }
 
     if (typeof this.props.options.rowStyle === 'function') {
       style = {
         ...style,
-        ...this.props.options.rowStyle(this.props.data, index, level)
+        ...this.props.options.rowStyle(this.props.data, index, level),
       }
     } else if (this.props.options.rowStyle) {
       style = {
         ...style,
-        ...this.props.options.rowStyle
+        ...this.props.options.rowStyle,
       }
     }
 
@@ -247,9 +236,7 @@ export default class TableBodyRow extends React.Component {
     return style
   }
 
-  getElementSize = () => {
-    return this.props.options.padding === 'default' ? 'medium' : 'small'
-  }
+  getElementSize = () => (this.props.options.padding === 'default' ? 'medium' : 'small')
 
   render() {
     const renderColumns = this.renderColumns()
@@ -257,8 +244,8 @@ export default class TableBodyRow extends React.Component {
       renderColumns.splice(0, 0, this.renderSelectionColumn())
     }
     if (
-      this.props.actions &&
-      this.props.actions.filter(a => !a.isFreeAction).length > 0
+      this.props.actions
+      && this.props.actions.filter(a => !a.isFreeAction).length > 0
     ) {
       if (this.props.options.actionsColumnIndex === -1) {
         renderColumns.push(this.renderActions())
@@ -270,15 +257,15 @@ export default class TableBodyRow extends React.Component {
         renderColumns.splice(
           this.props.options.actionsColumnIndex + endPos,
           0,
-          this.renderActions()
+          this.renderActions(),
         )
       }
     }
 
     if (this.props.isTreeData) {
       if (
-        this.props.data.tableData.childRows &&
-        this.props.data.tableData.childRows.length > 0
+        this.props.data.tableData.childRows
+        && this.props.data.tableData.childRows.length > 0
       ) {
         renderColumns.splice(
           0,
@@ -286,7 +273,7 @@ export default class TableBodyRow extends React.Component {
           <TableCell
             size={this.getElementSize()}
             padding="none"
-            key={'key-tree-data-column'}
+            key="key-tree-data-column"
             style={{ width: 48 + 9 * (this.props.treeDataMaxLevel - 2) }}
           >
             <IconButton
@@ -295,8 +282,8 @@ export default class TableBodyRow extends React.Component {
                 transition: 'all ease 200ms',
                 marginLeft: this.props.level * 9,
                 ...this.rotateIconStyle(
-                  this.props.data.tableData.isTreeExpanded
-                )
+                  this.props.data.tableData.isTreeExpanded,
+                ),
               }}
               onClick={event => {
                 this.props.onTreeExpandChanged(this.props.path, this.props.data)
@@ -305,13 +292,13 @@ export default class TableBodyRow extends React.Component {
             >
               <this.props.icons.DetailPanel />
             </IconButton>
-          </TableCell>
+          </TableCell>,
         )
       } else {
         renderColumns.splice(
           0,
           0,
-          <TableCell padding="none" key={'key-tree-data-column'} />
+          <TableCell padding="none" key="key-tree-data-column" />,
         )
       }
     }
@@ -334,8 +321,8 @@ export default class TableBodyRow extends React.Component {
           <TableCell
             size={this.getElementSize()}
             padding="none"
-            key={'key-group-cell' + columnDef.tableData.id}
-          />
+            key={`key-group-cell${columnDef.tableData.id}`}
+          />,
         )
       })
 
@@ -364,11 +351,11 @@ export default class TableBodyRow extends React.Component {
         <TableRow
           selected={hasAnyEditingRow}
           {...rowProps}
-          hover={onRowClick ? true : false}
+          hover={!!onRowClick}
           style={this.getStyle(this.props.index, this.props.level)}
           onClick={event => {
-            onRowClick &&
-              onRowClick(event, this.props.data, panelIndex => {
+            onRowClick
+              && onRowClick(event, this.props.data, panelIndex => {
                 let panel = detailPanel
                 if (Array.isArray(panel)) {
                   panel = panel[panelIndex || 0].render
@@ -380,15 +367,15 @@ export default class TableBodyRow extends React.Component {
         >
           {renderColumns}
         </TableRow>
-        {this.props.data.tableData.childRows &&
-          this.props.data.tableData.isTreeExpanded &&
-          this.props.data.tableData.childRows.map((data, index) => {
+        {this.props.data.tableData.childRows
+          && this.props.data.tableData.isTreeExpanded
+          && this.props.data.tableData.childRows.map((data, index) => {
             if (data.tableData.editing) {
               return (
                 <this.props.components.EditRow
-                  columns={this.props.columns.filter(columnDef => {
-                    return !columnDef.hidden
-                  })}
+                  columns={this.props.columns.filter(
+                    columnDef => !columnDef.hidden,
+                  )}
                   components={this.props.components}
                   data={data}
                   icons={this.props.icons}
@@ -402,28 +389,25 @@ export default class TableBodyRow extends React.Component {
                   onEditingApproved={onEditingApproved}
                 />
               )
-            } else {
-              return (
-                <this.props.components.Row
-                  {...this.props}
-                  data={data}
-                  index={index}
-                  key={index}
-                  level={this.props.level + 1}
-                  path={[...this.props.path, index]}
-                  onEditingCanceled={onEditingCanceled}
-                  onEditingApproved={onEditingApproved}
-                  hasAnyEditingRow={this.props.hasAnyEditingRow}
-                  treeDataMaxLevel={treeDataMaxLevel}
-                />
-              )
             }
+            return (
+              <this.props.components.Row
+                {...this.props}
+                data={data}
+                index={index}
+                key={index}
+                level={this.props.level + 1}
+                path={[...this.props.path, index]}
+                onEditingCanceled={onEditingCanceled}
+                onEditingApproved={onEditingApproved}
+                hasAnyEditingRow={this.props.hasAnyEditingRow}
+                treeDataMaxLevel={treeDataMaxLevel}
+              />
+            )
           })}
-        {this.props.data.tableData &&
-          this.props.data.tableData.showDetailPanel && (
-            <TableRow
-            // selected={this.props.index % 2 === 0}
-            >
+        {this.props.data.tableData
+          && this.props.data.tableData.showDetailPanel && (
+            <TableRow>
               <TableCell
                 size={this.getElementSize()}
                 colSpan={renderColumns.length}
@@ -432,7 +416,7 @@ export default class TableBodyRow extends React.Component {
                 {this.props.data.tableData.showDetailPanel(this.props.data)}
               </TableCell>
             </TableRow>
-          )}
+        )}
       </>
     )
   }
@@ -443,7 +427,7 @@ TableBodyRow.defaultProps = {
   index: 0,
   data: {},
   options: {},
-  path: []
+  path: [],
 }
 
 TableBodyRow.propTypes = {
@@ -453,7 +437,7 @@ TableBodyRow.propTypes = {
   data: PropTypes.object.isRequired,
   detailPanel: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func]))
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
   ]),
   hasAnyEditingRow: PropTypes.bool,
   options: PropTypes.object.isRequired,
@@ -465,5 +449,5 @@ TableBodyRow.propTypes = {
   onToggleDetailPanel: PropTypes.func.isRequired,
   onRowClick: PropTypes.func,
   onEditingApproved: PropTypes.func,
-  onEditingCanceled: PropTypes.func
+  onEditingCanceled: PropTypes.func,
 }

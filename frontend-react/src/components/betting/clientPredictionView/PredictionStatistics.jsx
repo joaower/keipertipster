@@ -1,13 +1,10 @@
-import React from 'react'
+import React from 'react';
 
+const PredictionStatistics = () => (
+  <div>
+    PredictionStatistics
 
-const PredictionStatistics = () => {
-    return (
-        <div>
-            PredictionStatistics
-            
-        </div>
-    )
-}
+  </div>
+);
 
-export default PredictionStatistics
+export default PredictionStatistics;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import SoccerRequest from '../../../../../requests/node/soccer'
-import MatchRequest from '../../../../../requests/matches'
-import AdminDashboardHeader from './AdminDashboardHeader'
-import AdminToPredictMatches from './AdminToPredictMatches'
-import AdminPredictedMatches from './AdminPredictedMatches'
+import SoccerRequest from '../../../../requests/node/soccer'
+import MatchRequest from '../../../../requests/matches'
+import AdminDashboardHeader from '../Forecast/ForecastDashboard/AdminDashboardHeader'
+import AdminToPredictMatches from '../Forecast/ForecastDashboard/AdminToPredictMatches'
+import AdminPredictedMatches from '../Forecast/ForecastDashboard/AdminPredictedMatches'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,9 +47,8 @@ function DashBoard() {
   const classes = useStyles()
   const handleSportChange = event => {
     setSportValue(event.target.value)
-    console.log(event.target.value)
-    switch (event.target.value) {
-      case '1':
+    /* switch (event.target.value) {
+       case '1':
         // loadTennisGames()
         break
       case '2':
@@ -59,19 +58,23 @@ function DashBoard() {
         // loadFootBallGames()
         break
       default:
-        console.log('Choose a sport')
-    }
+        break
+    } */
   }
   useEffect(() => {
     SoccerRequest.getToday().then(res => {
       if (res.status === 200) setData(res.data.matches)
     })
 
-    MatchRequest.getMatches().then(res => {
-      setAlreadyData(res.data)
-    }).catch(err => {
-      debugger
-    })
+    MatchRequest.getMatches()
+      .then(res => {
+        setAlreadyData(res.data)
+      })
+      .catch(err => {
+        if (err) {
+          if (err.status > 400) console.log('Erro')
+        }
+      })
   }, [])
 
   const [open, setOpen] = useState(false)
@@ -84,12 +87,18 @@ function DashBoard() {
     setOpen(false)
   }
   function handleDelete(id) {
-    MatchRequest.deleteMatchById(id).then(res => {
-      if (res.status === 200) {
-        setOpen(true)
-        removeAlreadyDataFromState(id)
-      }
-    })
+    MatchRequest.deleteMatchById(id)
+      .then(res => {
+        if (res.status === 200) {
+          setOpen(true)
+          removeAlreadyDataFromState(id)
+        }
+      })
+      .catch(err => {
+        if (err) {
+          if (err.status > 400) console.log('Erro')
+        }
+      })
   }
 
   function removeAlreadyDataFromState(id) {

@@ -8,11 +8,22 @@ import {
   Card,
   CardContent,
 } from '@material-ui/core'
+import { bounce } from 'react-animations'
+import Radium, { StyleRoot } from 'radium'
+import Helmet from 'react-helmet'
 import { Link, navigate } from '@reach/router'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import MatchRequest from '../../requests/matches'
 import { useStylesColor } from '../style'
 import Footer from '../../shared/components/Footer'
+import lightSpeedIn from 'react-animations/lib/light-speed-in'
+
+const animation = {
+  bounce: {
+    animation: 'x 1s',
+    animationName: Radium.keyframes(lightSpeedIn, 'lightSpeedIn'),
+  },
+}
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -75,7 +86,7 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     display: 'flex',
   },
-})) /* 
+})) /*
 const valueDay = [
   { id: '1', desc: 'Today' },
   { id: '2', desc: 'Next matches' },
@@ -106,7 +117,7 @@ const valueDay = [
   } */
 
   function loadBettedGames() {
-    if (window.localStorage.getItem('jwt') !== null) {
+    if (window.localStorage.getItem('jwt') !== null || undefined) {
       MatchRequest.getMatches()
         .then(res => {
           // setData(res.data)
@@ -120,6 +131,7 @@ const valueDay = [
           }
         })
     } else {
+      debugger
       MatchRequest.getMatchesUnauthenticated()
         .then(res => {
           // setData(res.data)
@@ -201,6 +213,16 @@ const valueDay = [
   const classes = useStyles()
   return (
     <>
+      <Helmet
+        title="Apostas"
+        meta={[
+          { name: 'title', content: 'Apostas avaliadar por Keiper' },
+          {
+            name: 'description',
+            content: 'Esta pagina é com o objetivo de demonstrar apostas.',
+          },
+        ]}
+      />
       <Grid container spacing={1} className={classes.midContent}>
         <Grid item xs={12} sm={2}>
           {window.localStorage.getItem('firstName') !== null && (
@@ -246,7 +268,7 @@ const valueDay = [
             helpText="Date choose"
           />
         </Paper> */}
-          {/*public offering to see and control their needs */}
+          {/* public offering to see and control their needs */}
           {/* <Paper className={classes.paper1}>
           <Typography>Match search</Typography>
           <form className={classes.root} noValidate autoComplete="off">
@@ -264,55 +286,60 @@ const valueDay = [
           <Paper className={classes.paper1}>
             <Typography variant="h4" className={classes.title}>
               Jogos analisados
-              
             </Typography>
-
             {filter !== undefined &&
               filter !== null &&
               filter.map(match => {
-                debugger
                 return (
-                  <Card className={`${classes.root} ${color.green}`}>
-                    <CardContent className={classes.cardFather}>
-                      <Grid container alignContent="center" alignItems="center">
-                        <Grid item xs={6}>
-                          <Typography
-                            gutterBottom
-                            variant="overline"
-                            style={{ fontWeight: 'bold' }}
-                            className={color.tOrange}
+                  <StyleRoot>
+                    <div style={animation.bounce}>
+                      <Card className={`${classes.root} ${color.green}`}>
+                        <CardContent className={classes.cardFather}>
+                          <Grid
+                            container
+                            alignContent="center"
+                            alignItems="center"
                           >
-                            Tipo de aposta
-                          </Typography>
-                          <Typography className={color.tGrey}>
-                            {match.type}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                          <Typography
-                            gutterBottom
-                            variant="overline"
-                            style={{ fontWeight: 'bold' }}
-                            className={color.tOrange}
-                          >
-                            Dia
-                          </Typography>
-                          <Typography className={color.tGrey}>
-                            {new Date(match.createdAt).getDate()}
-                          </Typography>
-                        </Grid>
+                            <Grid item xs={6}>
+                              <Typography
+                                gutterBottom
+                                variant="overline"
+                                style={{ fontWeight: 'bold' }}
+                                className={color.tOrange}
+                              >
+                                Tipo de aposta
+                              </Typography>
+                              <Typography className={color.tGrey}>
+                                {match.type}
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                              <Typography
+                                gutterBottom
+                                variant="overline"
+                                style={{ fontWeight: 'bold' }}
+                                className={color.tOrange}
+                              >
+                                Dia
+                              </Typography>
+                              <Typography className={color.tGrey}>
+                                {new Date(match.createdAt).getDate()}
+                              </Typography>
+                            </Grid>
 
-                        <Grid item xs={2}>
-                          <Link to={`/previsao/${match.id}`}>
-                            <VisibilityIcon
-                              className={color.tOrange}
-                              fontSize="large"
-                            />
-                          </Link>
-                        </Grid>
-                      </Grid>
-                    </CardContent>
-                  </Card>
+                            <Grid item xs={2}>
+                              <Link to={`/previsao/${match.id}`}>
+                                <VisibilityIcon
+                                  className={color.tOrange}
+                                  fontSize="large"
+                                />
+                              </Link>
+                            </Grid>
+                          </Grid>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </StyleRoot>
                 )
               })}
           </Paper>

@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const API_URL = 'http://localhost:8000'
+const API_URL = 'http://localhost:8000';
 
 class SoccerRequest {
   getToday() {
@@ -9,7 +9,7 @@ class SoccerRequest {
         'Content-Type': 'application/json',
         Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
       },
-    })
+    });
   }
 }
-export default new SoccerRequest()
+export default new SoccerRequest();

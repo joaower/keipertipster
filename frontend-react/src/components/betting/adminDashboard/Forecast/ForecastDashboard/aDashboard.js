@@ -50,12 +50,15 @@ function DashBoard() {
   function loadBasketBallGames() {
     BasketballRequest.getToday()
       .then(res => {
-        console.log(res.data.response)
         setData(res.data.response)
         // setChange(true)
       })
       .catch(err => {
-        debugger
+        if (err) {
+          if (err.status > 400) {
+            console.log('Erro')
+          }
+        }
       })
   }
 
@@ -75,8 +78,12 @@ function DashBoard() {
         // loadFootBallGames()
         break
       default:
-        console.log('Choose a sport')
+        break
     }
+  }
+
+  function removeAlreadyDataFromState(id) {
+    setAlreadyData(alreadyData.filter(item => item.id !== id))
   }
   /* function soccer() {
         SoccerRequest.getToday().then(res => {
@@ -91,10 +98,13 @@ function DashBoard() {
     MatchRequest.getMatches()
       .then(res => {
         setAlreadyData(res.data)
-        debugger
       })
       .catch(err => {
-        debugger
+        if (err) {
+          if (err.status > 400) {
+            console.log(err.message)
+          }
+        }
       })
   }, [])
 
@@ -108,19 +118,22 @@ function DashBoard() {
     setOpen(false)
   }
   function handleDelete(id) {
-    MatchRequest.deleteMatchById(id).then(res => {
-      if (res.status === 200) {
-        setOpen(true)
-        removeAlreadyDataFromState(id)
-      }
-    }).catch(err => {
-      debugger
-    })
+    MatchRequest.deleteMatchById(id)
+      .then(res => {
+        if (res.status === 200) {
+          setOpen(true)
+          removeAlreadyDataFromState(id)
+        }
+      })
+      .catch(err => {
+        if (err) {
+          if (err.status > 400) {
+            console.log(err.message)
+          }
+        }
+      })
   }
 
-  function removeAlreadyDataFromState(id) {
-    setAlreadyData(alreadyData.filter(item => item.id !== id))
-  }
   return (
     <Grid container spacing={1}>
       <AdminDashboardHeader

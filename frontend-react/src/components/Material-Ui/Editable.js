@@ -9,10 +9,10 @@ const Editable = ({ data, setData }) => {
       field: 'sport',
       lookup: {
         Basquetebol: 'Basquetebol',
-        Tennis: 'Tenis',
-        Soccer: 'Futebol',
-        Hockey: 'Hoquei',
-        Baseball: 'Basebol',
+        Tenis: 'Tenis',
+        Futebol: 'Futebol',
+        Hoquei: 'Hoquei',
+        Basebol: 'Basebol',
       },
       initialEditValue: 1,
       cellStyle: {
@@ -76,6 +76,7 @@ const Editable = ({ data, setData }) => {
           new Promise((resolve, reject) => {
             setTimeout(() => {
               {
+                newData.date=newData.date.toJSON()
                 setData([...data, newData])
               }
               resolve()
@@ -85,6 +86,8 @@ const Editable = ({ data, setData }) => {
           new Promise((resolve, reject) => {
             setTimeout(() => {
               {
+                debugger
+
                 const dataUpdate = [...data]
                 const index = oldData.tableData.id
                 dataUpdate[index] = newData
@@ -97,6 +100,8 @@ const Editable = ({ data, setData }) => {
           new Promise((resolve, reject) => {
             setTimeout(() => {
               {
+                debugger
+                
                 const dataDelete = [...data]
                 const index = oldData.tableData.id
                 dataDelete.splice(index, 1)

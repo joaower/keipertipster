@@ -1,26 +1,29 @@
-import React from 'react'
-import { Grid, Paper, Typography } from '@material-ui/core'
-import CustomCard from '../../../../card/CustomCard'
-import SwipeableViews from 'react-swipeable-views'
-import Tabs from '@material-ui/core/Tabs'
-import { useTheme } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Tab from '@material-ui/core/Tab'
-import { useStylesColor } from '../../../../style'
+import React from 'react';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
+import Tabs from '@material-ui/core/Tabs';
+import { useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Tab from '@material-ui/core/Tab';
+import CustomCard from '../../../../card/CustomCard';
+import { useStylesColor } from '../../../../style';
+
 const AdminToPredictMatches = ({ classes }) => {
-  const [value, setValue] = React.useState(0)
-  const color = useStylesColor()
+  const [value, setValue] = React.useState(0);
+  const color = useStylesColor();
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   const handleChangeIndex = (index: number) => {
-    setValue(index)
-  }
+    setValue(index);
+  };
 
-  const theme = useTheme()
+  const theme = useTheme();
   function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props
+    const {
+      children, value, index, ...other
+    } = props;
 
     return (
       <div
@@ -36,13 +39,13 @@ const AdminToPredictMatches = ({ classes }) => {
           </Box>
         )}
       </div>
-    )
+    );
   }
   function a11yProps(index: any) {
     return {
       id: `full-width-tab-${index}`,
       'aria-controls': `full-width-tabpanel-${index}`,
-    }
+    };
   }
   return (
     <Grid item xs={12} md={6}>
@@ -91,7 +94,7 @@ const AdminToPredictMatches = ({ classes }) => {
             Para estriar pó meu puto Vidal.
           </TabPanel>
         </SwipeableViews>
-        {/* 
+        {/*
                 {data && data.map(match => (
                     <GameCard
                         key={match.id}
@@ -101,7 +104,7 @@ const AdminToPredictMatches = ({ classes }) => {
                 ))} */}
       </Paper>
     </Grid>
-  )
-}
+  );
+};
 
-export default AdminToPredictMatches
+export default AdminToPredictMatches;

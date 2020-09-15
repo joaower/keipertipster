@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const API_URL = 'http://localhost:8000'
+const API_URL = 'http://localhost:8000';
 // process.env.REACT_APP_NODE_BACKEND_URL
 
 class BasketballRequest {
@@ -10,7 +10,7 @@ class BasketballRequest {
         'Content-Type': 'application/json',
         // Authorization: ` Bearer ${window.localStorage.getItem('jwt')}`,
       },
-    })
+    });
   }
 }
-export default new BasketballRequest()
+export default new BasketballRequest();

@@ -1,38 +1,37 @@
-
 class Utility {
   getSportValue(sportValue) {
     switch (sportValue) {
       case '1':
-        return 'Tenis'
+        return 'Tenis';
       case '2':
-        return 'Basketball'
+        return 'Basketball';
       case '3':
-        return 'Soccer'
+        return 'Soccer';
       default:
-        return 'default'
+        return 'default';
     }
   }
 
   getTypeValue(typeValue) {
     switch (typeValue) {
       case '1':
-        return 'Simples'
+        return 'Simples';
       case '2':
-        return 'Combinada'
+        return 'Combinada';
       default:
-        return 'default'
+        return 'default';
     }
   }
 
   getRiskValue(riskValue) {
     switch (riskValue) {
       case '1':
-        return 'Valor'
+        return 'Valor';
       case '2':
-        return 'Garantida'
+        return 'Garantida';
       default:
-        return 'default'
+        return 'default';
     }
   }
 }
-export default new Utility()
+export default new Utility();

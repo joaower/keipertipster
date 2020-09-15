@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const API_URL =  'http://localhost:1337'
- const API_URL = 'http://52.47.201.94:1337'
+//  const API_URL =  'http://localhost:1337'
+const API_URL = 'http://52.47.201.94:1337'
 // const API_URL = process.env.REACT_APP_API_URL;
 class MatchRequest {
   getMatches() {
@@ -41,6 +41,7 @@ class MatchRequest {
       },
     })
   }
+
   getMatchByIdUnauthenticated(id) {
     return axios.get(`${API_URL}/free-bets/${id}`, {
       headers: {
@@ -48,7 +49,6 @@ class MatchRequest {
       },
     })
   }
-  
 
   deleteMatchById(id) {
     return axios.delete(`${API_URL}/free-bets/${id}`, {

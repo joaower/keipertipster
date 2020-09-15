@@ -9,14 +9,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { useStylesColor } from '../../components/style'
-import { CssTextField } from '../../components/Material-Ui/CssTextField'
 import { Select, InputLabel, MenuItem } from '@material-ui/core'
 import { navigate } from '@reach/router'
-import AuthRequest from '../../requests/auth'
 import { Formik } from 'formik'
-import { AuthConsumer } from '../../context/AuthContext'
 import * as Yup from 'yup'
+import { useStylesColor } from '../../components/style'
+import { CssTextField } from '../../components/Material-Ui/CssTextField'
+import AuthRequest from '../../requests/auth'
+import { AuthConsumer } from '../../context/AuthContext'
 
 function Copyright() {
   return (
@@ -51,7 +51,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, 'Primeiro nome muito pequeno!')
@@ -85,7 +84,6 @@ export default function SignUp() {
       email: values.email,
       password: values.password,
     }
-    debugger
     AuthRequest.register(body)
       .then(res => {
         login(res.data.user.username, res.data.jwt, res.data.user.role.type)
@@ -94,7 +92,7 @@ export default function SignUp() {
         if (err.response !== undefined) {
           setMessage(err.response.data.message[0].messages[0].message)
         } else {
-          setMessage('Server currently down...')
+          setMessage('Servidor em baixo.')
         }
       })
   }
@@ -140,7 +138,7 @@ export default function SignUp() {
                     />
                   </Avatar>
                   <Typography component="h1" variant="h5">
-                    Sign up
+                    Registo
                   </Typography>
                   <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
@@ -302,7 +300,7 @@ export default function SignUp() {
                       variant="contained"
                       className={`${classes.submit} ${color.green} ${color.tOrange}`}
                     >
-                      Sign Up
+                      Registo
                     </Button>
                   </form>
                   <h1>{message}</h1>
@@ -313,7 +311,7 @@ export default function SignUp() {
                         variant="body2"
                         onClick={() => navigate('/auth/login')}
                       >
-                        Already have an account? Sign in
+                        Já tens conta? Login
                       </Link>
                     </Grid>
                   </Grid>

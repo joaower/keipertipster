@@ -1,15 +1,14 @@
-import React from 'react'
-import { Card, CardContent, Button } from '@material-ui/core'
-import { Link } from '@reach/router'
-import { useStylesCard } from '../style'
+import React from 'react';
+import { Card, CardContent, Button } from '@material-ui/core';
+import { Link } from '@reach/router';
+import { useStylesCard } from '../style';
 
 const comparator = (prevProps, nextProps) => {
   // if(prevProps.sportValue!==nextProps.sportValue) return false
   if (
-    prevProps.match.id !== nextProps.match.id &&
-    prevProps.sportValue === nextProps.sportValue
-  )
-    return false
+    prevProps.match.id !== nextProps.match.id
+    && prevProps.sportValue === nextProps.sportValue
+  ) { return false; }
   /* if (prevProps.isLoggedIn !== nextProps.setProps.isLoggedIn) {
         return true
     }
@@ -19,12 +18,12 @@ const comparator = (prevProps, nextProps) => {
     if (prevProps.anchorText !== nextProps.setProps.anchorText) {
         return true
     } */
-  return true
-}
+  return true;
+};
 
 const GameCard = React.memo(({ match, sportValue }) => {
-  const classes = useStylesCard()
-  console.log(match)
+  const classes = useStylesCard();
+  console.log(match);
   return (
     <Card className={classes.root}>
       <CardContent className={classes.cardFather}>
@@ -87,11 +86,11 @@ const GameCard = React.memo(({ match, sportValue }) => {
         </div>
       </CardContent>
     </Card>
-  )
-}, comparator)
+  );
+}, comparator);
 
 GameCard.propTypes = {
-    match: ''
-}
+  match: ''
+};
 
-export default GameCard
+export default GameCard;

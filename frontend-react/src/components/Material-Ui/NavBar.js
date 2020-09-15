@@ -1,15 +1,15 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import {
   Link,
   Grid,
-} from '@material-ui/core'
-import { navigate } from '@reach/router'
-import { useStylesColor } from '../style'
-import { AuthConsumer } from '../../context/AuthContext'
+} from '@material-ui/core';
+import { navigate } from '@reach/router';
+import { useStylesColor } from '../style';
+import { AuthConsumer } from '../../context/AuthContext';
 // import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,11 +22,11 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: '#E3DCD2',
   },
-}))
+}));
 
 export default function NavBar() {
-  const classes = useStyles()
-  const color = useStylesColor()
+  const classes = useStyles();
+  const color = useStylesColor();
 
   return (
     <div className={classes.root}>
@@ -108,33 +108,31 @@ export default function NavBar() {
               </Grid> */}
               <Grid item xs align="center" justify="center">
                 <AuthConsumer>
-                  {({ auth, logout, role }) =>
-                    auth ? (
-                      <Link
-                        style={{
-                          textDecoration: 'none',
-                          cursor: 'pointer',
-                        }}
-                        onClick={logout}
-                        className={color.tOrange}
-                      >
-                        <Typography gutterBottom variant="h6">Logout</Typography>
-                      </Link>
-                    ) : (
-                      <Link
-                        style={{
-                          textDecoration: 'none',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => navigate('/auth/login')}
-                        className={color.tOrange}
-                      >
-                        <Typography gutterBottom  variant="h6">
-                          Login
-                        </Typography>
-                      </Link>
-                    )
-                  }
+                  {({ auth, logout, role }) => (auth ? (
+                    <Link
+                      style={{
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                      }}
+                      onClick={logout}
+                      className={color.tOrange}
+                    >
+                      <Typography gutterBottom variant="h6">Logout</Typography>
+                    </Link>
+                  ) : (
+                    <Link
+                      style={{
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => navigate('/auth/login')}
+                      className={color.tOrange}
+                    >
+                      <Typography gutterBottom variant="h6">
+                        Login
+                      </Typography>
+                    </Link>
+                  ))}
                 </AuthConsumer>
               </Grid>
             </Grid>
@@ -142,5 +140,5 @@ export default function NavBar() {
         </Toolbar>
       </AppBar>
     </div>
-  )
+  );
 }

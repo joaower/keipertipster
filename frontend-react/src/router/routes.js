@@ -1,8 +1,8 @@
-import React from 'react'
-import { AuthProvider } from '../context/AuthContext'
-import PublicRoutes from './public.routes'
-import ProtectedRoutes from './protected.routes'
-import NavBar from '../components/Material-Ui/NavBar'
+import React from 'react';
+import { AuthProvider } from '../context/AuthContext';
+import PublicRoutes from './public.routes';
+import ProtectedRoutes from './protected.routes';
+import NavBar from '../components/Material-Ui/NavBar';
 
 export default function Routes() {
   return (
@@ -11,5 +11,5 @@ export default function Routes() {
       <PublicRoutes />
       <ProtectedRoutes />
     </AuthProvider>
-  )
+  );
 }

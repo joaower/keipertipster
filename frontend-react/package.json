@@ -12,11 +12,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "axios": "^0.19.2",
+    "eslint-plugin-babel": "^5.3.1",
     "formik": "^2.1.5",
     "formik-material-ui": "^3.0.0",
     "material-table": "^1.69.0",
+    "radium": "^0.26.0",
     "react": "^16.13.1",
+    "react-animations": "^1.0.0",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-loadable": "^5.5.0",
     "react-scripts": "^3.4.3",
     "react-swipeable-views": "0.13.9",
@@ -27,8 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ./ --ignore-path .gitignore",
-    "lint:fix": "npm run lint -- --fix"
+    "lint": "eslint --ext .jsx,.js src"
   },
   "eslintConfig": {
     "extends": "@imaginary-cloud/react"
