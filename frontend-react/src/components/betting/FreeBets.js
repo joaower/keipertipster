@@ -225,7 +225,7 @@ const valueDay = [
       />
       <Grid container spacing={1} className={classes.midContent}>
         <Grid item xs={12} sm={2}>
-          {window.localStorage.getItem('firstName') !== null && (
+          {window.localStorage.getItem('firstName') !== undefined && (
             <div className={color.black}>
               <Typography
                 className={color.tOrange}
