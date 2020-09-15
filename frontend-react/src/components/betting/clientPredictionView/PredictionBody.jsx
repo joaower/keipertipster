@@ -1,10 +1,8 @@
-import React from 'react';
-import {
-  Grid, Paper, Typography, makeStyles
-} from '@material-ui/core';
-import PropTypes from 'prop-types';
-import PredictionGameCard from './PredictionGameCard';
-import { useStylesColor } from '../../style';
+import React from 'react'
+import { Grid, Paper, Typography, makeStyles } from '@material-ui/core'
+// import PropTypes from 'prop-types'
+import PredictionGameCard from './PredictionGameCard'
+import { useStylesColor } from '../../style'
 
 const useStyles = makeStyles(theme => ({
   typeDisplay: {
@@ -16,11 +14,10 @@ const useStyles = makeStyles(theme => ({
       marginRight: '20rem',
     },
   },
-}));
+}))
 const PredictionBody = ({ data: { type, match, risk } }) => {
-  debugger;
-  const classes = useStyles();
-  const color = useStylesColor();
+  const classes = useStyles()
+  const color = useStylesColor()
   // const url = Proof !== null ? Proof.url : ''
   /* const imageUrl =
         process.env.NODE_ENV !== 'development'
@@ -52,14 +49,8 @@ const PredictionBody = ({ data: { type, match, risk } }) => {
               className={color.tOrange}
               align="center"
             >
-              Esta é uma aposta
-              {' '}
-              {type.toLowerCase()}
-              {' '}
-              com risco de
-              {' '}
-              {risk.toLowerCase()}
-              {' '}
+              Esta é uma aposta {type.toLowerCase()} com risco de{' '}
+              {risk.toLowerCase()}{' '}
             </Typography>
           )}
         </Paper>
@@ -82,16 +73,18 @@ const PredictionBody = ({ data: { type, match, risk } }) => {
           style={{ padding: '2rem', marginLeft: '2rem', marginRight: '2rem' }}
           elevation={3}
         >
-          {match !== undefined
-            && match.map(item => <PredictionGameCard data={item} />)}
+          {match !== undefined &&
+            match.map(item => {
+              return <PredictionGameCard data={item} key={item.id} />
+            })}
         </Paper>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 /* 
 PredictionBody.propTypes = {
   data: { type: PropTypes.string.isRequired, match: PropTypes.array.isRequired, risk: PropTypes.s }
 }; */
 
-export default PredictionBody;
+export default PredictionBody

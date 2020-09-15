@@ -20,9 +20,9 @@ const AdminPredictedMatches = ({
 
     {alreadyData
         && alreadyData.map(match => {
-          debugger;
           return (
             <PredictedCard
+            key={match.id}
               data={match}
               open={open}
               handleClose={handleClose}
@@ -36,7 +36,7 @@ const AdminPredictedMatches = ({
 
 AdminPredictedMatches.propTypes = {
   classes: PropTypes.object.isRequired,
-  alreadyData: PropTypes.object.isRequired,
+  alreadyData: PropTypes.array.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,

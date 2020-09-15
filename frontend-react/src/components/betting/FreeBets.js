@@ -8,7 +8,6 @@ import {
   Card,
   CardContent,
 } from '@material-ui/core'
-import { bounce } from 'react-animations'
 import Radium, { StyleRoot } from 'radium'
 import Helmet from 'react-helmet'
 import { Link, navigate } from '@reach/router'
@@ -121,17 +120,14 @@ const valueDay = [
       MatchRequest.getMatches()
         .then(res => {
           // setData(res.data)
-          debugger
           setFilter(res.data)
         })
         .catch(err => {
-          debugger
           if (err.response !== undefined) {
             if (err.response.status === 401) navigate('/auth/login')
           }
         })
     } else {
-      debugger
       MatchRequest.getMatchesUnauthenticated()
         .then(res => {
           // setData(res.data)
@@ -225,7 +221,7 @@ const valueDay = [
       />
       <Grid container spacing={1} className={classes.midContent}>
         <Grid item xs={12} sm={2}>
-          {window.localStorage.getItem('firstName') !== undefined && (
+          {/* {window.localStorage.getItem('firstName') !== undefined && (
             <div className={color.black}>
               <Typography
                 className={color.tOrange}
@@ -235,7 +231,7 @@ const valueDay = [
                 Olá {window.localStorage.getItem('firstName')}!
               </Typography>
             </div>
-          )}
+          )} */}
           {/* <Paper className={classes.paper1}>
           <Typography variant="h5">
             Todos jogos representados aqui já foram analisados
@@ -291,7 +287,7 @@ const valueDay = [
               filter !== null &&
               filter.map(match => {
                 return (
-                  <StyleRoot>
+                  <StyleRoot key={match.id}>
                     <div style={animation.bounce}>
                       <Card className={`${classes.root} ${color.green}`}>
                         <CardContent className={classes.cardFather}>

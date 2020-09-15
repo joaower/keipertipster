@@ -1,15 +1,14 @@
-import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import SportsSoccerOutlinedIcon from '@material-ui/icons/SportsSoccerOutlined';
-import PropTypes from 'prop-types';
-import { useStylesColor } from '../../style';
+import React from 'react'
+import { Grid, Typography } from '@material-ui/core'
+import SportsSoccerOutlinedIcon from '@material-ui/icons/SportsSoccerOutlined'
+import PropTypes from 'prop-types'
+import { useStylesColor } from '../../style'
 
 const PredictionGameCard = ({
-  data: {
-    sport, competition, match, odd, description
-  },
+  data: { sport, competition, match, odd, description, date },
 }) => {
-  const color = useStylesColor();
+  const nDate = new Date(date)
+  const color = useStylesColor()
   return (
     <Grid
       container
@@ -60,7 +59,9 @@ const PredictionGameCard = ({
               variant="body1"
               align="center"
             >
-              {odd}
+              {nDate.getHours()}:{nDate.getMinutes()}m
+              <br />
+              {nDate.getDay()}/{nDate.getMonth()}
             </Typography>
           </Grid>
           {/*
@@ -81,13 +82,26 @@ const PredictionGameCard = ({
         />
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
 PredictionGameCard.propTypes = {
-  data: {
-    sport: PropTypes.string.isRequired, competition: PropTypes.string.isRequired, match: PropTypes.string.isRequired, odd: PropTypes.number.isRequired, description: PropTypes.string.isRequired
-  }
-};
+  data: PropTypes.shape({
+    sport: PropTypes.string.isRequired,
+    competition: PropTypes.string.isRequired,
+    match: PropTypes.string.isRequired,
+    odd: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+  }),
+  // data: PropTypes.object.isRequired,
+}
 
-export default PredictionGameCard;
+export default PredictionGameCard
+
+/* data: {
+  sport: PropTypes.string.isRequired,
+  competition: PropTypes.string.isRequired,
+  match: PropTypes.string.isRequired,
+  odd: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+}, */

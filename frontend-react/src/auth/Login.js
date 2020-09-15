@@ -57,7 +57,6 @@ export default function Login(props) {
   const [message, setMessage] = useState('')
   function handleClick(e, login) {
     e.preventDefault()
-    debugger
     const body = {
       identifier,
       password,
@@ -138,7 +137,7 @@ export default function Login(props) {
                     Forgot password?
                   </Link>
                 </Grid> */}
-                <Grid item align="center" justify="center">
+                <Grid item >
                   <Link
                     className={color.tBlack}
                     onClick={() => navigate('/auth/registo')}

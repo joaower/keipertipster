@@ -74,7 +74,7 @@ const Footer = () => {
             temporibus quod et perspiciatis!
           </Typography>
         </Grid>
-        <Grid item xs={12} sm justify="center">
+        <Grid item xs={12} sm >
           <Typography variant="h6" className={color.tGreen}>
             Conecta-te connosco
           </Typography>
@@ -101,8 +101,9 @@ const Footer = () => {
           />
           <br />
           <Grid style={{ marginTop: '3rem' }} container justify="center">
-            <Grid item xs justify="center" style={{ width: '5rem', height: '5rem' }}>
+            <Grid item xs  style={{ width: '5rem', height: '5rem' }}>
               <img
+              alt="logo"
                 style={{ maxWidth: '100%', maxHeight: '100%' }}
                 src={imageURL}
               />

@@ -1,15 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import {
-  Link,
-  Grid,
-} from '@material-ui/core';
-import { navigate } from '@reach/router';
-import { useStylesColor } from '../style';
-import { AuthConsumer } from '../../context/AuthContext';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import { Link, Grid } from '@material-ui/core'
+import { navigate } from '@reach/router'
+import { useStylesColor } from '../style'
+import { AuthConsumer } from '../../context/AuthContext'
+import imageURL from '../../shared/components/logo.jpeg'
 // import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,24 +20,37 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: '#E3DCD2',
   },
-}));
+  navbar: {
+    height: '13vh',
+    [theme.breakpoints.down('sm')]: {
+      height: '20vh'
+    },
+  }
+}))
 
 export default function NavBar() {
-  const classes = useStyles();
-  const color = useStylesColor();
+  const classes = useStyles()
+  const color = useStylesColor()
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar className={color.green} style={{ height: '13vh' }}>
+        <Toolbar className={`${color.green} ${classes.navbar}`}>
           <Grid
             container
             direction="row"
-            justify="flex-end"
+            justify="flex-start"
             alignItems="center"
             spacing={1}
           >
-            <Grid container direction="row" item xs={12} sm={8}>
+            <Grid item xs={12} sm={2} style={{ width: '5rem', height: '5rem' }}>
+              <img
+                alt="logo"
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+                src={imageURL}
+              />
+            </Grid>
+            <Grid item item xs={12} sm={10}>
               <div>
                 <Typography gutterBottom variant="h4" className={classes.title}>
                   <Link
@@ -56,15 +67,15 @@ export default function NavBar() {
                 </Typography>
               </div>
             </Grid>
-            <Grid
-              item
-              container
-              direction="row"
-              alignItems="flex-end"
-              justify="flex-end"
-              xs={12}
-              sm={4}
-            >
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+            spacing={1}
+          >
+            <Grid container direction="row" justify="flex-start">
               <Grid item xs>
                 <Link
                   style={{
@@ -106,33 +117,37 @@ export default function NavBar() {
                   <Typography variant="h6">Login</Typography>
                 </Link>
               </Grid> */}
-              <Grid item xs align="center" justify="center">
+              <Grid item xs align="center">
                 <AuthConsumer>
-                  {({ auth, logout, role }) => (auth ? (
-                    <Link
-                      style={{
-                        textDecoration: 'none',
-                        cursor: 'pointer',
-                      }}
-                      onClick={logout}
-                      className={color.tOrange}
-                    >
-                      <Typography gutterBottom variant="h6">Logout</Typography>
-                    </Link>
-                  ) : (
-                    <Link
-                      style={{
-                        textDecoration: 'none',
-                        cursor: 'pointer',
-                      }}
-                      onClick={() => navigate('/auth/login')}
-                      className={color.tOrange}
-                    >
-                      <Typography gutterBottom variant="h6">
-                        Login
-                      </Typography>
-                    </Link>
-                  ))}
+                  {({ auth, logout, role }) =>
+                    auth ? (
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                        onClick={logout}
+                        className={color.tOrange}
+                      >
+                        <Typography gutterBottom variant="h6">
+                          Logout
+                        </Typography>
+                      </Link>
+                    ) : (
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => navigate('/auth/login')}
+                        className={color.tOrange}
+                      >
+                        <Typography gutterBottom variant="h6">
+                          Login
+                        </Typography>
+                      </Link>
+                    )
+                  }
                 </AuthConsumer>
               </Grid>
             </Grid>
@@ -140,5 +155,5 @@ export default function NavBar() {
         </Toolbar>
       </AppBar>
     </div>
-  );
+  )
 }

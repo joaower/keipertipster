@@ -14,7 +14,7 @@ const Editable = ({ data, setData }) => {
         Hoquei: 'Hoquei',
         Basebol: 'Basebol',
       },
-      initialEditValue: 1,
+      initialEditValue: 'Futebol',
       cellStyle: {
         width: '2rem',
         maxWidth: '2rem',
