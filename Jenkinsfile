@@ -5,18 +5,23 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'pwd'
-                sh 'ls'
+                // test building for errors
+                sh cd 'frontend-react'
+                sh 'npm install'
+                sh 'npm run build'
+                // linting
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                // run tests
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                // to understand
             }
         }
     }
