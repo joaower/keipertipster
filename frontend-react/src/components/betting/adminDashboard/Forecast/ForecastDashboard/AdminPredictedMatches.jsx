@@ -1,7 +1,8 @@
-import React from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import PredictedCard from '../../../../card/PredictedCard';
+import React from 'react'
+import { Grid, Paper, Typography } from '@material-ui/core'
+import PropTypes from 'prop-types'
+import PredictedCard from '../../../../card/PredictedCard'
+import { useStylesColor } from '../../../../../components/style'
 
 const AdminPredictedMatches = ({
   classes,
@@ -10,29 +11,34 @@ const AdminPredictedMatches = ({
   handleDelete,
   open,
   removeAlreadyDataFromState,
-}) => (
-  <Grid item xs={12} md={6}>
-    <Paper className={classes.paper}>
-      <Typography variant="h5" className={classes.title}>
-        Predictions
-      </Typography>
-    </Paper>
+}) => {
+  debugger
+  const color = useStylesColor()
+  return (
+    <Grid item xs={12} md={6}>
+      <Paper className={`${color.grey} ${classes.paper} `}>
+        <Typography variant="h5" className={classes.title}>
+          Predictions
+        </Typography>
+      </Paper>
 
-    {alreadyData
-        && alreadyData.map(match => {
+      {alreadyData &&
+        alreadyData.map(match => {
+          debugger
           return (
             <PredictedCard
-            key={match.id}
+              key={match.id}
               data={match}
               open={open}
               handleClose={handleClose}
               handleDelete={handleDelete}
               removeAlreadyDataFromState={removeAlreadyDataFromState}
             />
-          );
+          )
         })}
-  </Grid>
-);
+    </Grid>
+  )
+}
 
 AdminPredictedMatches.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -41,6 +47,6 @@ AdminPredictedMatches.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   removeAlreadyDataFromState: PropTypes.func.isRequired,
-};
+}
 
-export default AdminPredictedMatches;
+export default AdminPredictedMatches

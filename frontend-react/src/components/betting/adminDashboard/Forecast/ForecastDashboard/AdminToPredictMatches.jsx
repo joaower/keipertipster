@@ -49,7 +49,6 @@ const AdminToPredictMatches = ({ classes }) => {
   }
   return (
     <Grid item xs={12} md={6}>
-      <CustomCard />
       <Paper className={classes.paper1}>
         <Typography
           variant="h5"
@@ -94,6 +93,8 @@ const AdminToPredictMatches = ({ classes }) => {
             Para estriar pó meu puto Vidal.
           </TabPanel>
         </SwipeableViews>
+      <CustomCard />
+
         {/*
                 {data && data.map(match => (
                     <GameCard

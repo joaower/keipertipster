@@ -68,16 +68,12 @@ const PredictionBody = ({ data: { type, match, risk } }) => {
         >
           JOGOS
         </Typography>
-        <Paper
-          // className={color.green}
-          style={{ padding: '2rem', marginLeft: '2rem', marginRight: '2rem' }}
-          elevation={3}
-        >
+        
           {match !== undefined &&
             match.map(item => {
               return <PredictionGameCard data={item} key={item.id} />
             })}
-        </Paper>
+        
       </Grid>
     </Grid>
   )

@@ -17,7 +17,7 @@ import PropTypes from 'prop-types'
 import StatRequest from '../../requests/stats'
 import MatchRequest from '../../requests/matches'
 import { useStylesColor } from '../style'
-
+import PredictedMiniCardBetStatus from './PredictedMiniCardBetStatus'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -63,6 +63,8 @@ const PredictedCard = ({
   // const theme = useTheme()
   const color = useStylesColor()
   const combinedOdd = match.reduce((a, b) => a * b.odd, 1)
+  
+
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
   }
@@ -109,13 +111,14 @@ const PredictedCard = ({
 
           <Typography variant="subtitle1" color="textSecondary">
             Qt - {match.length}
-            {match.map(item => {
-              return (
-                <ul key={item.id}>
-                  <li>{item.match}</li>
-                </ul>
-              )
-            })}
+            <ul>
+              {match.map(item => {
+                debugger
+                return (
+                  <PredictedMiniCardBetStatus key={item.id} data={item} type={type} />
+                )
+              })}
+            </ul>
             Odd - {combinedOdd}
           </Typography>
         </CardContent>

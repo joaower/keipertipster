@@ -97,6 +97,7 @@ function DashBoard() {
 
     MatchRequest.getMatches()
       .then(res => {
+        debugger
         setAlreadyData(res.data)
       })
       .catch(err => {
@@ -136,7 +137,7 @@ function DashBoard() {
 
   return (
     <Grid container spacing={1}>
-      <AdminDashboardHeader
+      {/* <AdminDashboardHeader
         classes={classes}
         sportValue={sportValue}
         handleSportChange={handleSportChange}
@@ -144,20 +145,22 @@ function DashBoard() {
         dayValue={dayValue}
         handleDayChange={handleDayChange}
         valueDay={valueDay}
-      />
-      <AdminToPredictMatches
-        classes={classes}
-        data={data}
-        sportValue={sportValue}
-      />
-      <AdminPredictedMatches
-        classes={classes}
-        alreadyData={alreadyData}
-        handleClose={handleClose}
-        handleDelete={handleDelete}
-        open={open}
-        removeAlreadyDataFromState={removeAlreadyDataFromState}
-      />
+      /> */}
+      <Grid container direction="row">
+        <AdminToPredictMatches
+          classes={classes}
+          data={data}
+          sportValue={sportValue}
+        />
+        <AdminPredictedMatches
+          classes={classes}
+          alreadyData={alreadyData}
+          handleClose={handleClose}
+          handleDelete={handleDelete}
+          open={open}
+          removeAlreadyDataFromState={removeAlreadyDataFromState}
+        />
+      </Grid>
     </Grid>
   )
 }
